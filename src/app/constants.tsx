@@ -11,7 +11,7 @@ export const Obras: Obra[] = [
         slug: "chalchiuhtlicue",
         imgsrc: "",
         imgalt: "",
-        iframesrc: "https://sbector.com/chalchiuhtlicue/"
+        iframesrc: "https://sbector.github.io/chalchiuhtlicue/"
     },
     {
         title: "parícutin",
@@ -20,7 +20,7 @@ export const Obras: Obra[] = [
         slug: "paricutin",
         imgsrc: "../../obras/paricutin.jpg",
         imgalt: "captura de pantalla de la experiencia virtual 3d paricutin",
-        iframesrc: "https://sbector.com/paricutin/"
+        iframesrc: "https://sbector.github.io/paricutin/"
     },
     {
         title: "subtle-sync",
@@ -29,8 +29,8 @@ export const Obras: Obra[] = [
         slug: "subtle",
         imgsrc: "",
         imgalt: "",
-        iframesrc: "https://sbector.com/subtle-sync/",
-        appLink: "https://sbector.com/subtle-sync/"
+        iframesrc: "https://sbector.github.io/subtle-sync/",
+        appLink: "https://sbector.github.io/subtle-sync/"
     },
     {
         title: "autorretrato",

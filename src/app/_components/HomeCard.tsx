@@ -4,7 +4,7 @@ export default function HomeCard() {
         <iframe
                         id="pari"
                         title="paricutin"
-                        src="https://sbector.com/paricutin/"
+                        src="https://sbector.github.io/paricutin/"
                         className="top-0 left-0 w-full h-full"
                         allowFullScreen
                     />
