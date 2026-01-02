@@ -1,6 +1,6 @@
 export default function HomeCard() {
     return (
-       <div className="top-0 left-0 absolute w-full h-full bg-black">
+       <div className="top-0 left-0 absolute w-full h-full bg-zinc-900">
         <iframe
                         id="pari"
                         title="paricutin"
