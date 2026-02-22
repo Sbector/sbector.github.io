@@ -1,11 +1,11 @@
 ---
 import type { CollectionEntry } from "astro:content";
 
-const { obra } = Astro.props as {
-  obra: CollectionEntry<"obras">;
-};
+type Obra = CollectionEntry<"obras">;
 
-const spanClasses: Record<string, string> = {
+const { obra } = Astro.props as { obra: Obra };
+
+const spanClasses: Partial<Record<Obra["data"]["bento"], string>> = {
   wide: "lg:col-span-2",
   tall: "lg:row-span-2",
   large: "lg:col-span-2 lg:row-span-2",

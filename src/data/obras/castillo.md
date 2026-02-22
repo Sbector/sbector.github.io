@@ -7,12 +7,12 @@ slug: "castillo"
 status: published
 
 cover:
-  src: "obras/castillo/cover.jpg"
+  src: "/obras/castillo/cover.jpg"
   alt: "intervención en LAJM"
 
 media:
   type: image
-  src: "obras/castillo/cover.jpg"
+  src: "/obras/castillo/cover.jpg"
 
 bento: small
 ---

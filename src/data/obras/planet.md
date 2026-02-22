@@ -7,7 +7,7 @@ slug: "planet"
 status: published
 
 cover:
-  src: "obras/planet/planet.jpg"
+  src: "/obras/planet/planet.jpg"
   alt: "still del video planet"
 
 media:

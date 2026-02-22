@@ -1,0 +1,52 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+type Obra = CollectionEntry<"obras">;
+
+export async function getStaticPaths() {
+  const obras = await getCollection("obras");
+
+  return obras
+    .filter((obra) => obra.data.status === "published")
+    .map((obra) => ({
+      params: { slug: obra.data.slug },
+      props: { obra },
+    }));
+}
+
+const { obra } = Astro.props as { obra: Obra };
+---
+
+<Layout title={`${obra?.data.title} | sbector`}>
+  <article class="mx-auto max-w-3xl px-6 md:px-10 py-16">
+
+    <!-- Encabezado -->
+    <header class="mb-10">
+      <h1 class="text-2xl md:text-3xl font-normal tracking-wide uppercase">
+        {obra.data.title}
+      </h1>
+
+      <p class="mt-2 text-sm text-neutral-500">
+        {obra.data.year}
+      </p>
+    </header>
+
+    <!-- Imagen principal -->
+    <figure class="mb-12">
+      <img
+        src={obra.data.cover.src}
+        alt={obra.data.cover.alt}
+        class="w-full h-auto object-cover"
+        loading="eager"
+      />
+    </figure>
+
+    <!-- Cuerpo -->
+    <div class="prose prose-neutral max-w-none">
+      {obra.body}
+    </div>
+
+  </article>
+</Layout>

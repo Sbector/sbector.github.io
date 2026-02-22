@@ -7,12 +7,12 @@ slug: "caballo"
 status: published
 
 cover:
-  src: "obras/caballo/cover.jpg"
+  src: "/obras/caballo/cover.jpg"
   alt: "retrato de caballo frente a sierra"
 
 media:
   type: image
-  src: "obras/caballo/cover.jpg"
+  src: "/obras/caballo/cover.jpg"
 
 bento: tall
 ---

@@ -7,12 +7,12 @@ slug: "victoria"
 status: published
 
 cover:
-  src: "obras/victoria/cover.jpg"
+  src: "/obras/victoria/cover.jpg"
   alt: "Envases de cerveza"
 
 media:
   type: image
-  src: "obras/victoria/cover.jpg"
+  src: "/obras/victoria/cover.jpg"
 
 bento: tall
 ---

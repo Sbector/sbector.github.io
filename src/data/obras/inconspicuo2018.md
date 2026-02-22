@@ -7,7 +7,7 @@ slug: "inconspicuo2018"
 status: published
 
 cover:
-  src: "obras/inconspicuo/inconspicuo2018.jpg"
+  src: "/obras/inconspicuo/inconspicuo2018.jpg"
   alt: "still del video inconspicuo"
 
 media:

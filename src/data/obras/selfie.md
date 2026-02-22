@@ -7,12 +7,12 @@ slug: "selfie"
 status: published
 
 cover:
-  src: "obras/selfie/cover.jpg"
+  src: "/obras/selfie/cover.jpg"
   alt: "Captura de pantalla de la webapp"
 
 media:
   type: image
-  src: "obras/selfie/cover.jpg"
+  src: "/obras/selfie/cover.jpg"
 
 bento: tall
 ---
