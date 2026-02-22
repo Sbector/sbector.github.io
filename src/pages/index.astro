@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import BentoCard from "@/components/BentoCard.astro";
 import { getCollection } from "astro:content";
 
 const obras = (await getCollection("obras"))
@@ -23,67 +24,8 @@ const obras = (await getCollection("obras"))
       grid-flow-dense
     "
   >
-    {
-      obras.map((obra) => (
-        <a
-          href={`/obras/${obra.data.slug}`}
-          class={`
-            group
-            overflow-hidden
-            relative
-            ${obra.data.bento === "wide" ? "lg:col-span-2" : ""}
-            ${obra.data.bento === "tall" ? "lg:row-span-2" : ""}
-            ${obra.data.bento === "large" ? "lg:col-span-2 lg:row-span-2" : ""}
-          `}
-        >
-          <img
-            src={obra.data.cover.src}
-            alt={obra.data.cover.alt}
-            loading="lazy"
-            class="
-              w-full
-              h-full
-              object-cover
-              transition-transform
-              duration-700
-              ease-out
-              group-hover:scale-[1.03]
-            "
-          />
-
-          <!-- Overlay editorial -->
-          <div
-            class="
-              absolute
-              inset-0
-              bg-black/0
-              group-hover:bg-black/30
-              transition-colors
-              duration-500
-            "
-          />
-
-          <div
-            class="
-              absolute
-              bottom-4
-              left-4
-              text-white
-              opacity-0
-              group-hover:opacity-100
-              transition-opacity
-              duration-500
-            "
-          >
-            <h3 class="text-sm tracking-wide uppercase">
-              {obra.data.title}
-            </h3>
-            <p class="text-xs opacity-80">
-              {obra.data.year}
-            </p>
-          </div>
-        </a>
-      ))
-    }
+    {obras.map((obra) => (
+      <BentoCard obra={obra} />
+    ))}
   </div>
 </Layout>
