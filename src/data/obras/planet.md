@@ -6,13 +6,12 @@ slug: "planet"
 
 status: published
 
-cover:
-  src: "/obras/planet/cover.webp"
-  alt: "still del video planet"
+cover: "/obras/planet/cover.webp"
+coverAlt: "still del video planet"
 
-media:
-  type: image
-  src: "/obras/planet/planet.jpg"
+mediaType: image
+mediaSrc: "/obras/planet/planet.jpg"
+mediaAlt: ""
 
 bento: wide
 ---

@@ -6,13 +6,12 @@ slug: "mai"
 
 status: published
 
-cover:
-  src: "/obras/mai/cover.webp"
-  alt: "archivo epistolar"
+cover: "/obras/mai/cover.webp"
+coverAlt: "archivo epistolar"
 
-media:
-  type: image
-  src: "/obras/mai/cover.jpg"
+mediaType: image
+mediaSrc: "/obras/mai/cover.jpg"
+mediaAlt: ""
 
 bento: small
 ---

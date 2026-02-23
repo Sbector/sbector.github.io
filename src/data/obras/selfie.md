@@ -4,15 +4,14 @@ year: 2021
 description: "web app y código qr"
 slug: "selfie"
 
-status: published
+status: archived
 
-cover:
-  src: "/obras/selfie/cover.webp"
-  alt: "Captura de pantalla de la webapp"
+cover: "/obras/selfie/cover.webp"
+coverAlt: "Captura de pantalla de la webapp"
 
-media:
-  type: image
-  src: "/obras/selfie/cover.jpg"
+mediaType: image
+mediaSrc: "/obras/selfie/cover.jpg"
+mediaAlt: ""
 
 bento: tall
 ---

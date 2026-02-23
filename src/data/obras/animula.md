@@ -6,13 +6,12 @@ slug: "animula"
 
 status: published
 
-cover:
-  src: "/obras/animula/cover.webp"
-  alt: "intervención en trama centro"
+cover: "/obras/animula/cover.webp"
+coverAlt: "intervención en trama centro"
 
-media:
-  type: image
-  src: "/obras/animula/cover.webp"
+mediaType: image
+mediaSrc: "/obras/animula/cover.webp"
+mediaAlt: ""
 
 bento: small
 ---

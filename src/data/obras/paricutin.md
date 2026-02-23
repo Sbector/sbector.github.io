@@ -6,13 +6,12 @@ slug: "paricutin"
 
 status: published
 
-cover:
-  src: "/obras/paricutin/cover.webp"
-  alt: "still del video paricutin"
+cover: "/obras/paricutin/cover.webp"
+coverAlt: "still del video paricutin"
 
-media:
-  type: image
-  src: "/obras/paricutin/paricutin.jpg"
+mediaType: image
+mediaSrc: "/obras/paricutin/paricutin.jpg"
+mediaAlt: ""
 
 bento: small
 ---

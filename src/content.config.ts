@@ -7,30 +7,25 @@ const obras = defineCollection({
     base: "./src/data/obras",
   }),
   schema: z.object({
-    // Identidad
     title: z.string(),
     year: z.coerce.number(),
-    description: z.string(),
+    description: z.string().optional(),
     slug: z.string(),
 
-    // Publicación
-    status: z.enum(["draft", "published", "archived"]).default("published"),
+    status: z
+      .enum(["draft", "published", "archived"])
+      .default("published"),
 
-    // Imagen para el grid (bento)
-    cover: z.object({
-      src: z.string(),
-      alt: z.string(),
-    }),
+    cover: z.string(),
+    coverAlt: z.string(),
 
-    // Media principal
-    media: z.object({
-      type: z.enum(["image", "video", "iframe"]),
-      src: z.string(),
-      alt: z.string().optional(),
-    }),
+    mediaType: z.enum(["image", "video", "iframe"]),
+    mediaSrc: z.string(),
+    mediaAlt: z.string().optional(),
 
-    // Comportamiento visual
-    bento: z.enum(["small", "wide", "tall", "large"]).default("small"),
+    bento: z
+      .enum(["small", "wide", "tall", "large"])
+      .default("small"),
   }),
 });
 

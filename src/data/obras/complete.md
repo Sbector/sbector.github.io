@@ -6,13 +6,12 @@ slug: "complete"
 
 status: published
 
-cover:
-  src: "/obras/complete/cover.webp"
-  alt: "intervención en espacio cabeza"
+cover: "/obras/complete/cover.webp"
+coverAlt: "intervención en espacio cabeza"
 
-media:
-  type: image
-  src: "/obras/complete/complete.jpeg"
+mediaType: image
+mediaSrc: "/obras/complete/complete.jpeg"
+mediaAlt: ""
 
 bento: tall
 ---

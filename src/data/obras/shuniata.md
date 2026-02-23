@@ -6,13 +6,12 @@ slug: "shuniata"
 
 status: published
 
-cover:
-  src: "/obras/shuniata/cover.webp"
-  alt: "intervención en CERI"
+cover: "/obras/shuniata/cover.webp"
+coverAlt: "intervención en CERI"
 
-media:
-  type: image
-  src: "/obras/shuniata/shuniata.jpg"
+mediaType: image
+mediaSrc: "/obras/shuniata/shuniata.jpg"
+mediaAlt: ""
 
 bento: small
 ---

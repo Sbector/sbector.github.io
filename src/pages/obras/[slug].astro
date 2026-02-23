@@ -48,8 +48,8 @@ const { obra } = Astro.props as { obra: Obra };
     <div class="flex-1 flex items-center justify-center bg-neutral-950 px-1">
       <img
         transition:name={`img-${obra.data.slug}`}
-        src={obra.data.cover.src}
-        alt={obra.data.cover.alt}
+        src={obra.data.cover}
+        alt={obra.data.coverAlt}
         class="max-h-[70dvh] lg:max-h-[85dvh] w-auto object-contain"
         loading="eager"
       />

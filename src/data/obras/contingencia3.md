@@ -6,13 +6,12 @@ slug: "contingencia3"
 
 status: published
 
-cover:
-  src: "/obras/contingencia3/cover.webp"
-  alt: "colage digital de escena apocaliptica"
+cover: "/obras/contingencia3/cover.webp"
+coverAlt: "colage digital de escena apocaliptica"
 
-media:
-  type: image
-  src: "/obras/contingencia3/contingencia3.jpg"
+mediaType: image
+mediaSrc: "/obras/contingencia3/contingencia3.jpg"
+mediaAlt: ""
 
 bento: small
 ---

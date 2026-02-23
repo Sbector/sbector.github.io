@@ -1,0 +1,49 @@
+media:
+  input: public
+  output: /
+
+content:
+  - name: obras
+    label: Obras
+    type: collection
+    path: src/data/obras
+    format: yaml-frontmatter
+
+    fields:
+      - { name: title, label: Título, type: string }
+      - { name: slug, label: Slug, type: string }
+      - { name: year, label: Año, type: number }
+      - { name: description, label: Descripción, type: text, required: false }
+
+      - name: status
+        label: Estado
+        type: select
+        options:
+          - { label: Draft, value: draft }
+          - { label: Publicado, value: published }
+          - { label: Archivado, value: archived }
+        default: draft
+
+      - { name: cover, label: Imagen principal, type: image }
+      - { name: coverAlt, label: Texto alternativo, type: string }
+
+      - name: mediaType
+        label: Tipo de media
+        type: select
+        options:
+          - { label: Imagen, value: image }
+          - { label: Video, value: video }
+          - { label: Iframe, value: iframe }
+
+      - { name: mediaSrc, label: Fuente del media, type: string }
+      - { name: mediaAlt, label: Texto alternativo del media, type: string, required: false }
+
+      - name: bento
+        label: Tamaño en grid
+        type: select
+        options:
+          - { label: Small, value: small }
+          - { label: Wide, value: wide }
+          - { label: Tall, value: tall }
+          - { label: Large, value: large }
+        default: small

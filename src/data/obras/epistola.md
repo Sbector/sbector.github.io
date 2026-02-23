@@ -6,13 +6,12 @@ slug: "epistola"
 
 status: published
 
-cover:
-  src: "/obras/epistola/cover.webp"
-  alt: "Epistola"
+cover: "/obras/epistola/cover.webp"
+coverAlt: "Epistola"
 
-media:
-  type: image
-  src: "/obras/epistola/cover.jpg"
+mediaType: image
+mediaSrc: "/obras/epistola/cover.jpg"
+mediaAlt: ""
 
 bento: small
 ---

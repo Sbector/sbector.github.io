@@ -6,13 +6,12 @@ slug: "inconspicuo2020"
 
 status: published
 
-cover:
-  src: "/obras/inconspicuo/inconspicuo2020.webp"
-  alt: "colage digital de escena apocaliptica"
+cover: "/obras/inconspicuo/inconspicuo2020.webp"
+coverAlt: "colage digital de escena apocaliptica"
 
-media:
-  type: image
-  src: "/obras/inconspicuo/inconspicuo2020.jpg"
+mediaType: image
+mediaSrc: "/obras/inconspicuo/inconspicuo2020.jpg"
+mediaAlt: ""
 
 bento: tall
 ---

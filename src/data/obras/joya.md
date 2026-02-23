@@ -6,13 +6,12 @@ slug: "joya"
 
 status: published
 
-cover:
-  src: "/obras/joya/cover.webp"
-  alt: "intervención en LAJM"
+cover: "/obras/joya/cover.webp"
+coverAlt: "intervención en LAJM"
 
-media:
-  type: image
-  src: "/obras/joya/cover.jpg"
+mediaType: image
+mediaSrc: "/obras/joya/cover.jpg"
+mediaAlt: ""
 
 bento: tall
 ---

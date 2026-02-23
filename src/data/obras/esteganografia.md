@@ -6,13 +6,12 @@ slug: "esteganografia"
 
 status: published
 
-cover:
-  src: "/obras/esteganografia/cover.webp"
-  alt: "imagen recodificada"
+cover: "/obras/esteganografia/cover.webp"
+coverAlt: "imagen recodificada"
 
-media:
-  type: image
-  src: "/obras/esteganografia/esteganografia.jpg"
+mediaType: image
+mediaSrc: "/obras/esteganografia/esteganografia.jpg"
+mediaAlt: ""
 
 bento: wide
 ---

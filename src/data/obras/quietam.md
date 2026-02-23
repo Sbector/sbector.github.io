@@ -6,13 +6,12 @@ slug: "quietam"
 
 status: published
 
-cover:
-  src: "/obras/quietam/cover.webp"
-  alt: "Fotografía digital"
+cover: "/obras/quietam/cover.webp"
+coverAlt: "Fotografía digital"
 
-media:
-  type: image
-  src: "/obras/quietam/cover.jpg"
+mediaType: image
+mediaSrc: "/obras/quietam/cover.jpg"
+mediaAlt: ""
 
 bento: tall
 ---

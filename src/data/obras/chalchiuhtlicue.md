@@ -6,13 +6,12 @@ slug: "chalchiuhtlicue"
 
 status: published
 
-cover:
-  src: "/obras/chalchiuhtlicue/cover.webp"
-  alt: "chalchiuhtlicue"
+cover: "/obras/chalchiuhtlicue/cover.webp"
+coverAlt: "chalchiuhtlicue"
 
-media:
-  type: image
-  src: "/obras/chalchiuhtlicue/cover.jpg"
+mediaType: image
+mediaSrc: "/obras/chalchiuhtlicue/cover.jpg"
+mediaAlt: ""
 
 bento: tall
 ---
