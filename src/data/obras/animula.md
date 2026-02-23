@@ -3,7 +3,7 @@ title: animula vagula blandula
 slug: animula
 year: 2013
 description: Cobre, seda y video proyección (medidas variables)
-status: published
+status: archived
 cover: /obras/animula/cover.webp
 coverAlt: intervención en trama centro
 mediaType: image
