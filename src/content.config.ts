@@ -14,17 +14,19 @@ const obras = defineCollection({
 
     status: z
       .enum(["draft", "published", "archived"])
+      .optional()
       .default("published"),
 
-    cover: z.string(),
-    coverAlt: z.string(),
+    cover: z.string().optional(),
+    coverAlt: z.string().optional(),
 
-    mediaType: z.enum(["image", "video", "iframe"]),
-    mediaSrc: z.string(),
+    mediaType: z.enum(["image", "video", "iframe"]).optional(),
+    mediaSrc: z.string().optional(),
     mediaAlt: z.string().optional(),
 
     bento: z
       .enum(["small", "wide", "tall", "large"])
+      .optional()
       .default("small"),
   }),
 });
