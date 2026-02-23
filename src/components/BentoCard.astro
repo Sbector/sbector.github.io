@@ -6,7 +6,7 @@ type Obra = CollectionEntry<"obras">;
 const { obra } = Astro.props as { obra: Obra };
 
 const spanClasses: Partial<Record<Obra["data"]["bento"], string>> = {
-  wide: "md:col-span-2",
+  wide: "sm:col-span-2",
   tall: "row-span-2",
   large: "lg:col-span-2 lg:row-span-2",
 };
@@ -60,7 +60,7 @@ const spanClasses: Partial<Record<Obra["data"]["bento"], string>> = {
       duration-500
     "
   >
-    <h3 class="text-sm tracking-wide uppercase">
+    <h3 class="text-sm tracking-wide lowercase">
       {obra.data.title}
     </h3>
     <p class="text-xs opacity-80">
