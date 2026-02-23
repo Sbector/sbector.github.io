@@ -1,6 +1,16 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
+const about = defineCollection({
+  loader: glob({
+    pattern: "about.md",
+    base: "./src/data",
+  }),
+  schema: z.object({
+    title: z.string(),
+  }),
+});
+
 const obras = defineCollection({
   loader: glob({
     pattern: "**/*.md",
@@ -31,4 +41,4 @@ const obras = defineCollection({
   }),
 });
 
-export const collections = { obras };
+export const collections = { about, obras };

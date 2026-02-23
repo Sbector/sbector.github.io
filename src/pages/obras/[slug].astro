@@ -1,6 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
 type Obra = CollectionEntry<"obras">;
@@ -17,6 +17,7 @@ export async function getStaticPaths() {
 }
 
 const { obra } = Astro.props as { obra: Obra };
+const { Content } = await render(obra);
 ---
 
 <Layout title={`${obra.data.title} | sbector`}>
@@ -81,7 +82,15 @@ const { obra } = Astro.props as { obra: Obra };
   {
     obra.body && (
       <section class="max-w-3xl mx-auto px-6 md:px-10 py-24">
-        <div class="prose prose-invert max-w-none">{obra.body}</div>
+        <div class="prose prose-invert max-w-none">
+          {obra.body && (
+            <section class="max-w-2xl mx-auto px-6 md:px-10 py-24">
+              <div class="editorial">
+                <Content />
+              </div>
+            </section>
+          )}
+        </div>
       </section>
     )
   }

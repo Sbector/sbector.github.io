@@ -46,3 +46,18 @@ content:
         label: Texto completo
         type: rich-text
         required: false
+
+  - name: about
+    label: About
+    type: file
+    path: src/data/about.md
+    format: yaml-frontmatter
+
+    fields:
+      - name: title
+        label: Título
+        type: string
+
+      - name: body
+        label: Contenido
+        type: rich-text

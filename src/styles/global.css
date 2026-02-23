@@ -1,1 +1,51 @@
 @import "tailwindcss";
+
+.editorial {
+  color: #d4d4d4;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.editorial h1,
+.editorial h2,
+.editorial h3 {
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.editorial h1 {
+  font-size: 1.5rem;
+}
+
+.editorial h2 {
+  font-size: 1.25rem;
+}
+
+.editorial h3 {
+  font-size: 1.1rem;
+}
+
+.editorial p {
+  margin-bottom: 1.5rem;
+}
+
+.editorial img {
+  width: 100%;
+  margin: 3rem auto;
+}
+
+.editorial ul,
+.editorial ol {
+  margin: 1.5rem 0;
+  padding-left: 1.2rem;
+}
+
+.editorial blockquote {
+  border-left: 1px solid #444;
+  padding-left: 1rem;
+  color: #aaa;
+  margin: 2rem 0;
+}
