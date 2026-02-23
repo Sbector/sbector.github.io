@@ -7,7 +7,7 @@ slug: "selfie"
 status: published
 
 cover:
-  src: "/obras/selfie/cover.jpg"
+  src: "/obras/selfie/cover.webp"
   alt: "Captura de pantalla de la webapp"
 
 media:

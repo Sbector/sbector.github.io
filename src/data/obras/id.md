@@ -7,12 +7,12 @@ slug: "id"
 status: published
 
 cover:
-  src: "/obras/id/cover.jpg"
+  src: "/obras/id/cover.webp"
   alt: "still del video id"
 
 media:
-  type: video
-  src: "/obras/id/id.mp4"
+  type: image
+  src: "/obras/id/cover.jpg"
 
 bento: small
 ---

@@ -7,7 +7,7 @@ slug: "mai"
 status: published
 
 cover:
-  src: "/obras/mai/cover.jpg"
+  src: "/obras/mai/cover.webp"
   alt: "archivo epistolar"
 
 media:

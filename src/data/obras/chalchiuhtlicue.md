@@ -7,7 +7,7 @@ slug: "chalchiuhtlicue"
 status: published
 
 cover:
-  src: "/obras/chalchiuhtlicue/cover.jpg"
+  src: "/obras/chalchiuhtlicue/cover.webp"
   alt: "chalchiuhtlicue"
 
 media:

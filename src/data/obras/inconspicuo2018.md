@@ -7,12 +7,12 @@ slug: "inconspicuo2018"
 status: published
 
 cover:
-  src: "/obras/inconspicuo/inconspicuo2018.jpg"
+  src: "/obras/inconspicuo/cover.webp"
   alt: "still del video inconspicuo"
 
 media:
-  type: video
-  src: "/obras/inconspicuo/inconspicuo2018.mp4"
+  type: image
+  src: "/obras/inconspicuo/inconspicuo2018.jpg"
 
 bento: wide
 ---

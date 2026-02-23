@@ -7,7 +7,7 @@ slug: "quietam"
 status: published
 
 cover:
-  src: "/obras/quietam/cover.jpg"
+  src: "/obras/quietam/cover.webp"
   alt: "Fotografía digital"
 
 media:

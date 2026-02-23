@@ -7,7 +7,7 @@ slug: "esteganografia"
 status: published
 
 cover:
-  src: "/obras/esteganografia/esteganografia.jpg"
+  src: "/obras/esteganografia/cover.webp"
   alt: "imagen recodificada"
 
 media:

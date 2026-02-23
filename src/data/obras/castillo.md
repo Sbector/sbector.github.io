@@ -7,7 +7,7 @@ slug: "castillo"
 status: published
 
 cover:
-  src: "/obras/castillo/cover.jpg"
+  src: "/obras/castillo/cover.webp"
   alt: "intervención en LAJM"
 
 media:

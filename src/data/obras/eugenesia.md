@@ -7,12 +7,12 @@ slug: "eugenesia"
 status: published
 
 cover:
-  src: "/obras/eugenesia/cover.jpg"
+  src: "/obras/eugenesia/cover.webp"
   alt: "still del video eugenesia"
 
 media:
-  type: video
-  src: "/obras/eugenesia/eugenesia.mp4"
+  type: image
+  src: "/obras/eugenesia/cover.jpg"
 
 bento: small
 ---

@@ -1,13 +1,13 @@
 ---
 title: "complete this work wich i continued"
 year: 2019
-description: "CONTINUACIÓN DE LA OBRA ´HOW TO WORK BETTER´ DE FICHLI & WEISS"
+description: "Rótulo sobre muro"
 slug: "complete"
 
 status: published
 
 cover:
-  src: "/obras/complete/complete.jpeg"
+  src: "/obras/complete/cover.webp"
   alt: "intervención en espacio cabeza"
 
 media:

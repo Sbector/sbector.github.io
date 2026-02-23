@@ -7,12 +7,12 @@ slug: "paricutin"
 status: published
 
 cover:
-  src: "/obras/paricutin/paricutin.jpg"
+  src: "/obras/paricutin/cover.webp"
   alt: "still del video paricutin"
 
 media:
-  type: iframe
-  src: "https://sbector.github.io/paricutin/"
+  type: image
+  src: "/obras/paricutin/paricutin.jpg"
 
 bento: small
 ---

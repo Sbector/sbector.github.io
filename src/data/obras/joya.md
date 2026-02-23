@@ -1,13 +1,13 @@
 ---
 title: "La joya"
 year: 2014
-description: "escultura digital"
+description: "Proyecto para monumento público"
 slug: "joya"
 
 status: published
 
 cover:
-  src: "/obras/joya/cover.jpg"
+  src: "/obras/joya/cover.webp"
   alt: "intervención en LAJM"
 
 media:

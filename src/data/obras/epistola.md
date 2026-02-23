@@ -1,13 +1,13 @@
 ---
 title: "Epistola"
 year: 2021
-description: "poesía concreta"
+description: "arte postal"
 slug: "epistola"
 
 status: published
 
 cover:
-  src: "/obras/epistola/cover.jpg"
+  src: "/obras/epistola/cover.webp"
   alt: "Epistola"
 
 media:
