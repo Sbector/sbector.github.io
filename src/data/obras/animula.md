@@ -10,4 +10,10 @@ mediaType: image
 mediaSrc: /obras/animula/cover.webp
 bento: small
 ---
-Mecanismo que separa el espíritu del cuerpo
+# Transmigración del alma
+
+"animula vagula blandula" es el primer verso del poema atribuido al emperador Adriano que supuestamente escribió en su lecho de muerte.
+
+![](/4%20-%20Animula%20vagula%20blandula%202013.jpg)
+
+Esta obra formó parte de una exhibición organizada por Anatema en Trama.
