@@ -19,9 +19,7 @@ content:
         label: Estado
         type: select
         options:
-          - { label: Draft, value: draft }
-          - { label: Publicado, value: published }
-          - { label: Archivado, value: archived }
+          values: [draft, published, archived]
         default: draft
 
       - { name: cover, label: Imagen principal, type: image }
@@ -31,19 +29,20 @@ content:
         label: Tipo de media
         type: select
         options:
-          - { label: Imagen, value: image }
-          - { label: Video, value: video }
-          - { label: Iframe, value: iframe }
+          values: [image, video, iframe]
+        default: image
 
-      - { name: mediaSrc, label: Fuente del media, type: string }
+      - { name: mediaSrc, label: Fuente del media, type: string, required: false }
       - { name: mediaAlt, label: Texto alternativo del media, type: string, required: false }
 
       - name: bento
         label: Tamaño en grid
         type: select
         options:
-          - { label: Small, value: small }
-          - { label: Wide, value: wide }
-          - { label: Tall, value: tall }
-          - { label: Large, value: large }
+          values: [small, wide, tall, large]
         default: small
+
+      - name: body
+        label: Texto completo
+        type: rich-text
+        required: false
