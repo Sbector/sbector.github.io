@@ -1,17 +1,12 @@
 ---
-title: "eugenesia"
+title: eugenesia
+slug: eugenesia
 year: 2012
-description: "video digital multicanal a color"
-slug: "eugenesia"
-
+description: Video digital multicanal a color
 status: published
-
-cover: "/obras/eugenesia/cover.webp"
-coverAlt: "still del video eugenesia"
-
+cover: /obras/eugenesia/cover.webp
+coverAlt: still del video eugenesia
 mediaType: image
-mediaSrc: "/obras/eugenesia/cover.jpg"
-mediaAlt: ""
-
+mediaSrc: /obras/eugenesia/cover.jpg
 bento: small
 ---
