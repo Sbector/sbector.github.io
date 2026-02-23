@@ -1,7 +1,10 @@
 ---
 title: About
 ---
+Artista y programador originario de León, Guanajuato.
 
-artista multidisciplinario, productor de arte y programador originario de león, guanajuato. su trabajo artístico reflexiona acerca de la individualidad y la sociedad, el antropocentrismo en la cultura occidental y la idea de autoría en el arte contemporáneo utilizando técnicas como video, fotogrametría, realidad virtual y net art.
+  
+​Percibo mi práctica artística como una espiral: vuelvo constantemente a los mismos temas desde distintas posiciones y técnicas, pero siempre con una brújula clara. Mi trabajo se basa en la investigación, la crítica y la contemplación, con un compromiso firme por producir a un ritmo lento.
 
-Puedes usar **markdown**, imágenes y subtítulos.
+  
+​Me interesa cuestionar el antropocentrismo y la figura del artista como centro único de la obra. Por ello, desarrollo herramientas y procesos bajo la filosofía de la cultura libre, buscando que el espectador deje de ser un observador pasivo para convertirse también en productor. Para mí, el arte no es algo exclusivo, sino un ejercicio de cooperación técnica y colectiva.
