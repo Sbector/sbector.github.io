@@ -6,8 +6,8 @@ type Obra = CollectionEntry<"obras">;
 const { obra } = Astro.props as { obra: Obra };
 
 const spanClasses: Partial<Record<Obra["data"]["bento"], string>> = {
-  wide: "lg:col-span-2",
-  tall: "lg:row-span-2",
+  wide: "md:col-span-2",
+  tall: "row-span-2",
   large: "lg:col-span-2 lg:row-span-2",
 };
 ---
@@ -22,6 +22,7 @@ const spanClasses: Partial<Record<Obra["data"]["bento"], string>> = {
   `}
 >
   <img
+    transition:name={`img-${obra.data.slug}`}
     src={obra.data.cover.src}
     alt={obra.data.cover.alt}
     loading="lazy"

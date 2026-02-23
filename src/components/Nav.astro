@@ -1,0 +1,29 @@
+---
+const links = [
+  { href: "/about", label: "Acerca de" },
+  { href: "/contacto", label: "Contacto" },
+];
+---
+
+<header class="fixed w-full top-0 z-50 h-10 bg-neutral-950/80 backdrop-blur border-b border-neutral-800">
+  <nav class="max-w-6xl mx-auto px-6 pt-2 flex justify-between items-center text-sm uppercase tracking-wide">
+
+    <!-- Nombre / Logo -->
+    <a href="/" class="hover:opacity-60 transition">
+      sbector
+    </a>
+
+    <!-- Links -->
+    <div class="flex gap-8">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class="hover:opacity-60 transition"
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+  </nav>
+</header>
