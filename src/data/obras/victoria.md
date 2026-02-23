@@ -1,17 +1,12 @@
 ---
-title: "Victoria"
+title: Victoria
+slug: victoria
 year: 2020
-description: "8 envases de cerveza con diferentes "
-slug: "victoria"
-
+description: Políptico de 8 envases comerciales con decoloración por radiación UV.
 status: published
-
-cover: "/obras/victoria/cover.webp"
-coverAlt: "Envases de cerveza"
-
+cover: /obras/victoria/cover.webp
+coverAlt: Envases de cerveza
 mediaType: image
-mediaSrc: "/obras/victoria/cover.jpg"
-mediaAlt: ""
-
+mediaSrc: /obras/victoria/cover.jpg
 bento: tall
 ---
