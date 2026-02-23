@@ -1,17 +1,12 @@
 ---
-title: "planet"
+title: planet
+slug: planet
 year: 2020
-description: "video digital monocanal a color, 2:37"
-slug: "planet"
-
+description: Video digital monocanal a color, 2:37
 status: published
-
-cover: "/obras/planet/cover.webp"
-coverAlt: "still del video planet"
-
+cover: /obras/planet/cover.webp
+coverAlt: still del video planet
 mediaType: image
-mediaSrc: "/obras/planet/planet.jpg"
-mediaAlt: ""
-
+mediaSrc: /obras/planet/planet.jpg
 bento: wide
 ---
