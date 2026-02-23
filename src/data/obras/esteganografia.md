@@ -1,17 +1,12 @@
 ---
-title: "Esteganografía"
+title: Esteganografía
+slug: esteganografia
 year: 2020
-description: "aplicación e imagenes digitales, medidas variables"
-slug: "esteganografia"
-
+description: Aplicación para encriptación de imágenes
 status: published
-
-cover: "/obras/esteganografia/cover.webp"
-coverAlt: "imagen recodificada"
-
+cover: /obras/esteganografia/cover.webp
+coverAlt: imagen recodificada
 mediaType: image
-mediaSrc: "/obras/esteganografia/esteganografia.jpg"
-mediaAlt: ""
-
+mediaSrc: /obras/esteganografia/esteganografia.jpg
 bento: wide
 ---
