@@ -14,4 +14,4 @@ mediaSrc: /obras/xipe/cover.webp
 mediaAlt: Xipe tótec (Monte Albán 600-900 d.C.)
 bento: small
 ---
-Junto a [Chalchiutlicue](https://sbector.com/obras/chalchiuhtlicue/) forma parte de un proyecto de reapropiación digital de algunas piezas del inventario del Museo Nacional de Antropología.
+Junto a [**Chalchiutlicue**](https://sbector.com/obras/chalchiuhtlicue/) forma parte de un proyecto de reapropiación digital de algunas piezas del inventario del Museo Nacional de Antropología.
