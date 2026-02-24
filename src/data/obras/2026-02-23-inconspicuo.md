@@ -11,3 +11,6 @@ mediaSrc: /obras/inconspicuo/cover.webp
 mediaAlt: Intervención durante Balcones 3
 bento: small
 ---
+\[Inconspicuo 2018\]([https://sbector.com/obras/inconspicuo2018/](https://sbector.com/obras/inconspicuo2018/))
+
+\[Inconspicuo 2020\]([https://sbector.com/obras/inconspicuo2020/](https://sbector.com/obras/inconspicuo2020/))
