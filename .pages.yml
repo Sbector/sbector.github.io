@@ -42,11 +42,6 @@ content:
           values: [small, wide, tall, large]
         default: small
 
-      - name: body
-        label: Texto completo
-        type: rich-text
-        required: false
-
   - name: about
     label: About
     type: file
