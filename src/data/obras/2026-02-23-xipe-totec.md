@@ -6,7 +6,7 @@ description: |-
   Fotogrametría
 
   Xipe tótec (Monte Albán, Oaxaca 600-900 d.C. Cerámica)
-status: draft
+status: published
 cover: /obras/xipe/cover.webp
 coverAlt: Xipe tótec (Monte Albán 600-900 d.C.)
 mediaType: image
