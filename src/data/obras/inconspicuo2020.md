@@ -10,6 +10,6 @@ mediaType: image
 mediaSrc: /obras/inconspicuo/inconspicuo2020.jpg
 bento: tall
 ---
-\[Inconspicuo 2018\]([https://sbector.com/obras/inconspicuo2018/](https://sbector.com/obras/inconspicuo2018/))
+[Inconspicuo 2018](https://sbector.com/obras/inconspicuo2018/)
 
-\[Inconspicuo 2025\]([https://sbector.com/obras/inconspicuo2025/](https://sbector.com/obras/inconspicuo2025/))
+[Inconspicuo 2025](https://sbector.com/obras/inconspicuo2025/)
