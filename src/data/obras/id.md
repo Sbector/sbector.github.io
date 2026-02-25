@@ -2,7 +2,8 @@
 title: id
 slug: id
 year: 2011
-description: Impresión inkjet de archivo y video digital monocanal a color
+description: Impresión inkjet en papel de archivo y video digital monocanal a
+  color, dimensiones variables
 status: published
 cover: /obras/id/cover.webp
 coverAlt: still del video id
