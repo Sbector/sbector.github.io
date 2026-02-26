@@ -11,3 +11,5 @@ mediaSrc: /obras/quietam/cover.jpg
 bento: tall
 ---
 ![](/obras/quietam/Quietam2.webp)
+
+![](/obras/quietam/Quietam3.webp)
