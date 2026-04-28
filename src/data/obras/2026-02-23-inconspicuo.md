@@ -7,11 +7,10 @@ status: published
 cover: /obras/inconspicuo/cover2025.webp
 coverAlt: Intervención durante Balcones 3
 mediaType: image
-mediaSrc: /obras/inconspicuo/cover.webp
+mediaSrc: /obras/inconspicuo/cover2025.webp
 mediaAlt: Intervención durante Balcones 3
 bento: small
 ---
-
 [Inconspicuo 2018](https://sbector.com/obras/inconspicuo2018/)
 
 [Inconspicuo 2020](https://sbector.com/obras/inconspicuo2020/)
