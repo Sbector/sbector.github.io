@@ -1,0 +1,67 @@
+---
+import type { CollectionEntry } from "astro:content";
+import ObraViewport from "./ObraViewport";
+
+type Obra = CollectionEntry<"obras">;
+
+interface Props {
+  mediaType?: Obra["data"]["mediaType"];
+  mediaSrc?: string;
+  mediaAlt?: string;
+  slug: string;
+  modelAutoRotate?: boolean;
+  modelEnvironment?: string;
+}
+
+const { 
+  mediaType = "image", 
+  mediaSrc, 
+  mediaAlt = "", 
+  slug,
+  modelAutoRotate = true,
+  modelEnvironment = "city"
+} = Astro.props;
+---
+
+<div class="flex-1 flex items-center justify-center bg-neutral-950 px-1">
+  {mediaType === "image" && mediaSrc && (
+    <img
+      transition:name={`img-${slug}`}
+      src={mediaSrc}
+      alt={mediaAlt}
+      class="max-h-[70dvh] lg:max-h-[85dvh] w-auto object-contain"
+      loading="eager"
+    />
+  )}
+
+  {mediaType === "video" && mediaSrc && (
+    <video
+      src={mediaSrc}
+      autoplay
+      muted
+      loop
+      playsinline
+      class="max-h-[70dvh] lg:max-h-[85dvh] w-auto object-contain"
+    />
+  )}
+
+  {mediaType === "iframe" && mediaSrc && (
+    <iframe
+      src={mediaSrc}
+      class="w-full aspect-video"
+      allow="autoplay; fullscreen"
+      title={`Embedded media for ${slug}`}
+    />
+  )}
+
+  {mediaType === "model3d" && mediaSrc && (
+    <div class="w-full h-[70dvh] lg:h-[85dvh]">
+      <ObraViewport
+        client:only="react"
+        src={mediaSrc}
+        autoRotate={modelAutoRotate}
+        environment={modelEnvironment}
+      />
+    </div>
+  )}
+</div>

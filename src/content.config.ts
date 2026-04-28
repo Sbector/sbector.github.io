@@ -30,9 +30,12 @@ const obras = defineCollection({
     cover: z.string().optional(),
     coverAlt: z.string().optional(),
 
-    mediaType: z.enum(["image", "video", "iframe"]).optional(),
+    mediaType: z.enum(["image", "video", "iframe", "model3d"]).optional(),
     mediaSrc: z.string().optional(),
     mediaAlt: z.string().optional(),
+
+    modelAutoRotate: z.boolean().optional().default(true),
+    modelEnvironment: z.string().optional(),
 
     bento: z
       .enum(["small", "wide", "tall", "large"])
