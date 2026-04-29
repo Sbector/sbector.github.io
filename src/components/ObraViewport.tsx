@@ -1,6 +1,6 @@
 import React, { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { useGLTF, OrbitControls, Environment, Bounds } from '@react-three/drei';
+import { useGLTF, OrbitControls, Environment, Bounds, Lightformer } from '@react-three/drei';
 import * as THREE from 'three';
 
 interface ModelProps {
@@ -36,6 +36,7 @@ interface ObraViewportProps {
 }
 
 const ENVIRONMENT_PRESETS = [
+  { id: 'custom', label: 'Custom' },
   { id: 'studio', label: 'Studio' },
   { id: 'dawn', label: 'Dawn' },
   { id: 'sunset', label: 'Sunset' },
@@ -54,7 +55,7 @@ function LoadingFallback() {
 export default function ObraViewport({ 
   src, 
   autoRotate = true, 
-  environment = 'studio'
+  environment = 'custom'
 }: ObraViewportProps) {
   const [currentEnvironment, setCurrentEnvironment] = useState<string>(environment);
 
@@ -63,9 +64,11 @@ export default function ObraViewport({
       <Canvas
         camera={{ position: [0, 0, 5], fov: 50 }}
         style={{ width: '100%', height: '100%' }}
+        gl={{ toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1, alpha: true }}
       >
+        <ambientLight intensity={2} />
         <Suspense fallback={null}>
-          <Bounds fit clip observe>
+          <Bounds fit clip>
             <Model src={src} />
           </Bounds>
           <OrbitControls 
@@ -74,7 +77,14 @@ export default function ObraViewport({
             enableZoom={true}
             enablePan={true}
           />
-          <Environment preset={currentEnvironment as any} />
+          {currentEnvironment === 'custom' ? (
+            <Environment resolution={32} backgroundIntensity={0.1}>
+              <Lightformer position-z={-30} scale={40} intensity={4} form="ring" />
+              <Lightformer position-z={30} scale={40} intensity={4} form="ring" />
+            </Environment>
+          ) : (
+            <Environment preset={currentEnvironment as any} />
+          )}
         </Suspense>
       </Canvas>
       
