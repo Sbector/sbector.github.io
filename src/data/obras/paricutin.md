@@ -9,6 +9,6 @@ coverAlt: still del video paricutin
 mediaType: model3d
 mediaSrc: /obras/paricutin/paricutin.glb
 modelAutoRotate: true
-modelEnvironment: studio
+modelEnvironment: custom
 bento: small
 ---

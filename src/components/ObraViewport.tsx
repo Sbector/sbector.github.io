@@ -1,31 +1,46 @@
-import React, { Suspense, useState } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { useGLTF, OrbitControls, Environment, Bounds, Lightformer } from '@react-three/drei';
+import React, { Suspense, useState, useEffect, useCallback } from 'react';
+import { Canvas, useLoader } from '@react-three/fiber';
+import { OrbitControls, Environment, Bounds, Lightformer } from '@react-three/drei';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import * as THREE from 'three';
 
 interface ModelProps {
   src: string;
+  onProgress: (progress: number) => void;
+  onLoaded: () => void;
 }
 
-function Model({ src }: ModelProps) {
-  const { scene } = useGLTF(src);
-  
-  // Apply material defaults: roughness = 1 (no shine), metalness = 0 (not metallic)
-  // Only apply if maps don't exist (preserve baked textures)
-  scene.traverse((child) => {
-    if (child instanceof THREE.Mesh && child.material) {
-      const material = child.material as THREE.MeshStandardMaterial;
-      
-      if (!material.roughnessMap) {
-        material.roughness = 1;
-      }
-      
-      if (!material.metalnessMap) {
-        material.metalness = 0;
+function Model({ src, onProgress, onLoaded }: ModelProps) {
+  const gltf = useLoader(
+    GLTFLoader,
+    src,
+    (loader) => {
+      const draco = new DRACOLoader();
+      draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
+      (loader as any).setDRACOLoader(draco);
+    },
+    (event: ProgressEvent) => {
+      if (event.lengthComputable && event.total > 0) {
+        onProgress((event.loaded / event.total) * 100);
       }
     }
+  );
+
+  useEffect(() => {
+    onLoaded();
+  }, [gltf]);
+
+  const { scene } = gltf as any;
+
+  scene.traverse((child: any) => {
+    if (child instanceof THREE.Mesh && child.material) {
+      const material = child.material as THREE.MeshStandardMaterial;
+      if (!material.roughnessMap) material.roughness = 1;
+      if (!material.metalnessMap) material.metalness = 0;
+    }
   });
-  
+
   return <primitive object={scene} />;
 }
 
@@ -44,10 +59,25 @@ const ENVIRONMENT_PRESETS = [
   { id: 'city', label: 'City' },
 ] as const;
 
-function LoadingFallback() {
+interface LoadingBarProps {
+  progress: number;
+  isLoading: boolean;
+}
+
+function LoadingBar({ progress, isLoading }: LoadingBarProps) {
   return (
-    <div className="w-full h-full flex items-center justify-center bg-neutral-950 text-neutral-400">
-      <span className="text-sm">Cargando modelo...</span>
+    <div className={`absolute bottom-0 left-0 right-0 z-10 transition-opacity duration-300 ${
+      isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'
+    }`}>
+      <div className="relative w-full h-1 bg-neutral-900">
+        <div 
+          className="absolute h-full bg-white transition-all duration-200 ease-out"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+      <div className="absolute -bottom-6 right-2 text-xs font-mono text-white bg-black/50 px-2 py-1 rounded">
+        {Math.round(progress)}%
+      </div>
     </div>
   );
 }
@@ -58,18 +88,33 @@ export default function ObraViewport({
   environment = 'custom'
 }: ObraViewportProps) {
   const [currentEnvironment, setCurrentEnvironment] = useState<string>(environment);
+  const [progress, setProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setProgress(0);
+    setIsLoading(true);
+  }, [src]);
+
+  const handleProgress = useCallback((p: number) => setProgress(p), []);
+
+  const handleLoaded = useCallback(() => {
+    setProgress(100);
+    setTimeout(() => setIsLoading(false), 300);
+  }, []);
 
   return (
     <div className="relative w-full h-full">
+      <LoadingBar progress={progress} isLoading={isLoading} />
       <Canvas
         camera={{ position: [0, 0, 5], fov: 50 }}
         style={{ width: '100%', height: '100%' }}
         gl={{ toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1, alpha: true }}
       >
-        <ambientLight intensity={2} />
+        <ambientLight intensity={1} />
         <Suspense fallback={null}>
           <Bounds fit clip>
-            <Model src={src} />
+            <Model src={src} onProgress={handleProgress} onLoaded={handleLoaded} />
           </Bounds>
           <OrbitControls 
             autoRotate={autoRotate}
@@ -78,9 +123,9 @@ export default function ObraViewport({
             enablePan={true}
           />
           {currentEnvironment === 'custom' ? (
-            <Environment resolution={32} backgroundIntensity={0.1}>
-              <Lightformer position-z={-30} scale={40} intensity={4} form="ring" />
-              <Lightformer position-z={30} scale={40} intensity={4} form="ring" />
+            <Environment resolution={32} backgroundIntensity={0.5}>
+              <Lightformer position-z={-30} scale={40} intensity={5} form="ring" />
+              <Lightformer position-z={30} scale={40} intensity={5} form="ring" />
             </Environment>
           ) : (
             <Environment preset={currentEnvironment as any} />
