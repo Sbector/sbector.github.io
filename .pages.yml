@@ -13,7 +13,7 @@ content:
     # Configuración de la vista de lista
     view:
       primary: title # Campo principal (etiqueta) [2]
-      fields: ["title", "year", "status", "cover"] # Campos que se mostrarán como columnas [2]
+      fields: ["cover", "title", "year", "status"] # Campos que se mostrarán como columnas [2]
       default:
         sort: year # Opcional: ordena por año por defecto [2]
         order: desc
