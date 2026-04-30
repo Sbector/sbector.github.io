@@ -8,18 +8,22 @@ content:
     type: collection
     path: src/data/obras
     format: yaml-frontmatter
-    # Controla el nombre del archivo basado en el campo 'slug' [3, 5]
-    filename: "{slug}.md" 
+    filename: "{slug}.md"
+    
+    # Configuración de la vista de lista
     view:
-      # Define qué campo se muestra como título en la lista de la colección [4]
-      primary: title 
+      primary: title # Campo principal (etiqueta) [2]
+      fields: ["title", "year", "status", "cover"] # Campos que se mostrarán como columnas [2]
+      default:
+        sort: year # Opcional: ordena por año por defecto [2]
+        order: desc
 
     fields:
       - { name: title, label: Título, type: string, required: true }
       - { name: slug, label: Slug, type: string, required: true }
       - { name: year, label: Año, type: number }
       - { name: description, label: Descripción, type: text, required: false }
-
+      
       - name: status
         label: Estado
         type: select
