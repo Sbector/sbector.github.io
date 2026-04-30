@@ -8,10 +8,15 @@ content:
     type: collection
     path: src/data/obras
     format: yaml-frontmatter
+    # Controla el nombre del archivo basado en el campo 'slug' [3, 5]
+    filename: "{slug}.md" 
+    view:
+      # Define qué campo se muestra como título en la lista de la colección [4]
+      primary: title 
 
     fields:
-      - { name: title, label: Título, type: string }
-      - { name: slug, label: Slug, type: string }
+      - { name: title, label: Título, type: string, required: true }
+      - { name: slug, label: Slug, type: string, required: true }
       - { name: year, label: Año, type: number }
       - { name: description, label: Descripción, type: text, required: false }
 
@@ -32,7 +37,15 @@ content:
           values: [image, video, iframe]
         default: image
 
-      - { name: mediaSrc, label: Fuente del media, type: string, required: false }
+      - name: mediaSrc
+        label: Fuente del media
+        # Cambiado a 'file' para habilitar el selector de medios y la carga de archivos [2, 6, 7]
+        type: file 
+        required: false
+        # Ahora 'extensions' es válido porque el tipo es 'file' [1, 2]
+        extensions: ["mp4", "webm", "glb", "gltf", "obj"]
+        description: "Carga o selecciona el archivo de video (.mp4) o modelo 3D (.glb, .obj)"
+
       - { name: mediaAlt, label: Texto alternativo del media, type: string, required: false }
 
       - name: bento
@@ -44,7 +57,8 @@ content:
 
       - name: body
         label: Texto completo
-        type: rich-text
+        # La clave 'body' es especial: guarda el contenido fuera de los metadatos YAML [6, 8]
+        type: rich-text 
         required: false
 
   - name: about
@@ -60,4 +74,5 @@ content:
 
       - name: body
         label: Contenido
-        type: rich-text
+        # Mapea directamente al cuerpo del archivo Markdown [6, 8]
+        type: rich-text 
