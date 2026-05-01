@@ -23,7 +23,7 @@ const {
 } = Astro.props;
 ---
 
-<div class="flex-1 flex items-center justify-center bg-neutral-950 px-1">
+<div class="flex-1 flex items-center justify-center px-1">
   {mediaType === "image" && mediaSrc && (
     <img
       transition:name={`img-${slug}`}
@@ -55,7 +55,7 @@ const {
   )}
 
   {mediaType === "model3d" && mediaSrc && (
-    <div class="w-full h-[70dvh] lg:h-[85dvh]">
+    <div class="w-full h-[60dvh] lg:h-[85dvh]">
       <ObraViewport
         client:only="react"
         src={mediaSrc}

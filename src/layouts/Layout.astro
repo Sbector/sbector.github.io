@@ -5,9 +5,10 @@ import Nav from "@/components/Nav.astro";
 
 interface Props {
 	title?: string;
+	back?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, back } = Astro.props;
 ---
 
 <!doctype html>
@@ -19,26 +20,12 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<ClientRouter />
-		<style>
-			:root {
-				--nav-height: 2.5rem;
-			}
-		</style></head
-	>
+	</head>
 
-	<body class="bg-neutral-950 text-white overflow-x-hidden">
-		<Nav />
+	<body class="bg-bg text-white overflow-x-hidden">
+		<Nav {back} />
 		<main class="pt-10">
 			<slot />
 		</main>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

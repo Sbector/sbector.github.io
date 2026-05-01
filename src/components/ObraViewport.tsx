@@ -123,12 +123,12 @@ export default function ObraViewport({
             enablePan={true}
           />
           {currentEnvironment === 'custom' ? (
-            <Environment resolution={32} backgroundIntensity={0.5}>
+            <Environment resolution={32} backgroundIntensity={0} background={false}>
               <Lightformer position-z={-30} scale={40} intensity={5} form="ring" />
               <Lightformer position-z={30} scale={40} intensity={5} form="ring" />
             </Environment>
           ) : (
-            <Environment preset={currentEnvironment as any} />
+            <Environment preset={currentEnvironment as any} background={false} />
           )}
         </Suspense>
       </Canvas>

@@ -1,51 +1,68 @@
 @import "tailwindcss";
 
-.editorial {
-  color: #d4d4d4;
-  font-size: 0.95rem;
-  line-height: 1.7;
+@theme {
+  --color-bg: oklch(9.8% 0 0);
+  --color-border: oklch(21% 0 0);
+  --color-divider: oklch(28% 0 0);
+  --color-text: oklch(83% 0 0);
+  --color-muted: oklch(66% 0 0);
+  --color-heading: oklch(100% 0 0);
+  --spacing-nav: 2.5rem;
 }
 
-.editorial h1,
-.editorial h2,
-.editorial h3 {
-  color: #ffffff;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
+@layer base {
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
-.editorial h1 {
-  font-size: 1.5rem;
-}
+@layer components {
+  .editorial {
+    @apply text-text text-base leading-relaxed;
+  }
 
-.editorial h2 {
-  font-size: 1.25rem;
-}
+  .editorial h1,
+  .editorial h2,
+  .editorial h3 {
+    @apply text-heading font-medium tracking-tighter;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
 
-.editorial h3 {
-  font-size: 1.1rem;
-}
+  .editorial h1 {
+    @apply text-2xl;
+  }
 
-.editorial p {
-  margin-bottom: 1.5rem;
-}
+  .editorial h2 {
+    @apply text-xl;
+  }
 
-.editorial img {
-  width: 100%;
-  margin: 3rem auto;
-}
+  .editorial h3 {
+    @apply text-lg;
+  }
 
-.editorial ul,
-.editorial ol {
-  margin: 1.5rem 0;
-  padding-left: 1.2rem;
-}
+  .editorial p {
+    margin-bottom: 1.5rem;
+  }
 
-.editorial blockquote {
-  border-left: 1px solid #444;
-  padding-left: 1rem;
-  color: #aaa;
-  margin: 2rem 0;
+  .editorial img {
+    width: 100%;
+    margin: 3rem auto;
+  }
+
+  .editorial ul,
+  .editorial ol {
+    margin: 1.5rem 0;
+    padding-left: 1.2rem;
+  }
+
+  .editorial blockquote {
+    border-left: 1px solid var(--color-divider);
+    padding-left: 1rem;
+    @apply text-muted;
+    margin: 2rem 0;
+  }
 }
