@@ -23,13 +23,13 @@ const {
 } = Astro.props;
 ---
 
-<div class="flex-1 flex items-center justify-center px-1">
+<div class="w-full h-[60dvh] lg:flex-1 lg:h-full flex items-center justify-center px-1">
   {mediaType === "image" && mediaSrc && (
     <img
       transition:name={`img-${slug}`}
       src={mediaSrc}
       alt={mediaAlt}
-      class="max-h-[70dvh] lg:max-h-[85dvh] w-auto object-contain"
+      class="max-h-[60dvh] lg:max-h-full w-auto object-contain"
       loading="eager"
     />
   )}
@@ -41,7 +41,7 @@ const {
       muted
       loop
       playsinline
-      class="max-h-[70dvh] lg:max-h-[85dvh] w-auto object-contain"
+      class="max-h-[60dvh] lg:max-h-full w-auto object-contain"
     />
   )}
 
@@ -55,7 +55,7 @@ const {
   )}
 
   {mediaType === "model3d" && mediaSrc && (
-    <div class="w-full h-[60dvh] lg:h-[85dvh]">
+    <div class="w-full h-full">
       <ObraViewport
         client:only="react"
         src={mediaSrc}
