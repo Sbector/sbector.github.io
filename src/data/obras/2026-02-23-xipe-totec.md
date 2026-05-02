@@ -6,11 +6,9 @@ description: Fotogrametría de Xipe tótec (Monte Albán, Oaxaca 600-900 d.C. Ce
 status: published
 cover: /obras/xipe/cover.webp
 coverAlt: Xipe tótec (Monte Albán 600-900 d.C.)
-mediaType: model3d
-modelAutoRotate: true
-modelFiles:
-  - /obras/xipe/xipeTotec.glb
-modelEnvironment: custom
+media_content:
+  _block: modelo_3d
+  main_model: /obras/xipe/xipeTotec.glb
 bento: small
 ---
 Junto a [**Chalchiuhtlicue**](https://sbector.com/obras/chalchiuhtlicue/) forma parte de un proyecto de reapropiación digital de algunas piezas del inventario del Museo Nacional de Antropología.

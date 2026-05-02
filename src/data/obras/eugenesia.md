@@ -6,7 +6,9 @@ description: Video digital multicanal a color
 status: published
 cover: /obras/eugenesia/cover.webp
 coverAlt: still del video eugenesia
-mediaType: image
-mediaSrc: /obras/eugenesia/cover.jpg
+media_content:
+  _block: imagen
+  src: /obras/eugenesia/cover.jpg
+  alt: still del video eugenesia
 bento: small
 ---

@@ -6,11 +6,9 @@ description: Fotogrametría
 status: published
 cover: /obras/chalchiuhtlicue/cover.webp
 coverAlt: chalchiuhtlicue
-mediaType: model3d
-modelAutoRotate: true
-modelFiles:
-  - /obras/chalchiuhtlicue/chalchiuhtlicue2024.glb
-modelEnvironment: custom
+media_content:
+  _block: modelo_3d
+  main_model: /obras/chalchiuhtlicue/chalchiuhtlicue2024.glb
 bento: tall
 ---
 ​La monumental escultura de Chalchiuhtlicue, conocida popularmente como el "Tláloc" del Museo Nacional de Antropología, tiene una historia marcada por la intervención del Estado mexicano. Su extracción de Coatlinchán, Estado de México, en 1964, generó resistencia y controversia, convirtiéndose en un evento simbólico de la tensión entre el patrimonio y las comunidades locales.

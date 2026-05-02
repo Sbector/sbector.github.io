@@ -6,7 +6,9 @@ description: Políptico de 8 envases comerciales con decoloración por radiació
 status: published
 cover: /obras/victoria/cover.webp
 coverAlt: Envases de cerveza
-mediaType: image
-mediaSrc: /obras/victoria/cover.jpg
+media_content:
+  _block: imagen
+  src: /obras/victoria/cover.jpg
+  alt: Envases de cerveza
 bento: tall
 ---

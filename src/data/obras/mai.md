@@ -6,7 +6,9 @@ description: Archivo
 status: draft
 cover: /obras/mai/cover.webp
 coverAlt: archivo epistolar
-mediaType: image
-mediaSrc: /obras/mai/cover.jpg
+media_content:
+  _block: imagen
+  src: /obras/mai/cover.jpg
+  alt: archivo epistolar
 bento: small
 ---

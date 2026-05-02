@@ -7,8 +7,10 @@ description: Impresión inkjet en papel de archivo y video digital monocanal a
 status: published
 cover: /obras/id/cover.webp
 coverAlt: still del video id
-mediaType: video
-mediaSrc: /obras/id/fragmento.mp4
+media_content:
+  _block: video
+  src: /obras/id/fragmento.mp4
+  alt: still del video id
 bento: small
 ---
 ![](/obras/id/Hermana.webp)

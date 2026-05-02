@@ -6,7 +6,9 @@ description: Cobre, seda y video proyección (medidas variables)
 status: archived
 cover: /obras/animula/cover.webp
 coverAlt: intervención en trama centro
-mediaType: image
-mediaSrc: /obras/animula/cover.webp
+media_content:
+  _block: imagen
+  src: /obras/animula/cover.webp
+  alt: intervención en trama centro
 bento: small
 ---

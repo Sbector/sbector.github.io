@@ -6,7 +6,9 @@ description: Impresión inkjet sobre papel de archivo
 status: published
 cover: /obras/untitled2012/cover.webp
 coverAlt: Homenaje a thomas m. disch
-mediaType: image
-mediaSrc: /obras/untitled2012/cover.jpg
+media_content:
+  _block: imagen
+  src: /obras/untitled2012/cover.jpg
+  alt: Homenaje a thomas m. disch
 bento: large
 ---

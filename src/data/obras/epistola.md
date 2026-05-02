@@ -6,7 +6,9 @@ description: Arte postal
 status: published
 cover: /obras/epistola/cover.webp
 coverAlt: Epistola
-mediaType: image
-mediaSrc: /obras/epistola/cover.jpg
+media_content:
+  _block: imagen
+  src: /obras/epistola/cover.jpg
+  alt: Epistola
 bento: small
 ---

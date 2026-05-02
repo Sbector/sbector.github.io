@@ -6,7 +6,9 @@ description: Rótulo
 status: published
 cover: /obras/complete/cover.webp
 coverAlt: intervención en espacio cabeza
-mediaType: image
-mediaSrc: /obras/complete/complete.jpeg
+media_content:
+  _block: imagen
+  src: /obras/complete/complete.jpeg
+  alt: intervención en espacio cabeza
 bento: tall
 ---

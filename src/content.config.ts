@@ -11,6 +11,37 @@ const about = defineCollection({
   }),
 });
 
+const mediaContentSchema = z
+  .discriminatedUnion("_block", [
+    z.object({
+      _block: z.literal("imagen"),
+      src: z.string(),
+      alt: z.string().optional(),
+    }),
+    z.object({
+      _block: z.literal("video"),
+      src: z.string(),
+      alt: z.string().optional(),
+    }),
+    z.object({
+      _block: z.literal("iframe"),
+      url: z.string(),
+    }),
+    z.object({
+      _block: z.literal("modelo_3d"),
+      main_model: z.string(),
+      lods: z
+        .array(
+          z.object({
+            nivel: z.enum(["Bajo", "Medio", "Alto"]),
+            file: z.string(),
+          })
+        )
+        .optional(),
+    }),
+  ])
+  .optional();
+
 const obras = defineCollection({
   loader: glob({
     pattern: "**/*.md",
@@ -30,10 +61,13 @@ const obras = defineCollection({
     cover: z.string().optional(),
     coverAlt: z.string().optional(),
 
+    // New unified media content block
+    media_content: mediaContentSchema,
+
+    // Legacy fields (kept for backward compat during migration)
     mediaType: z.enum(["image", "video", "iframe", "model3d"]).optional(),
     mediaSrc: z.string().optional(),
     mediaAlt: z.string().optional(),
-
     modelAutoRotate: z.boolean().optional().default(true),
     modelEnvironment: z.string().optional(),
     modelFiles: z.array(z.string()).optional(),

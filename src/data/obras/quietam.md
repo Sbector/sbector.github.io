@@ -6,8 +6,10 @@ description: Fotografía digital
 status: published
 cover: /obras/quietam/cover.webp
 coverAlt: Fotografía digital
-mediaType: image
-mediaSrc: /obras/quietam/cover.jpg
+media_content:
+  _block: imagen
+  src: /obras/quietam/cover.jpg
+  alt: Fotografía digital
 bento: tall
 ---
 ![](/obras/quietam/Quietam2.webp)

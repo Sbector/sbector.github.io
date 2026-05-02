@@ -6,10 +6,8 @@ description: Fotogrametría
 status: published
 cover: /obras/paricutin/cover.webp
 coverAlt: still del video paricutin
-mediaType: model3d
-modelAutoRotate: true
-modelFiles:
-  - /obras/paricutin/pari2024.glb
-modelEnvironment: custom
+media_content:
+  _block: modelo_3d
+  main_model: /obras/paricutin/pari2024.glb
 bento: small
 ---

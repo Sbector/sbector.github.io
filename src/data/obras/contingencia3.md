@@ -6,7 +6,9 @@ description: Colage digital, medidas variables.
 status: published
 cover: /obras/contingencia3/cover.webp
 coverAlt: colage digital de escena apocaliptica
-mediaType: image
-mediaSrc: /obras/contingencia3/contingencia3.jpg
+media_content:
+  _block: imagen
+  src: /obras/contingencia3/contingencia3.jpg
+  alt: colage digital de escena apocaliptica
 bento: small
 ---

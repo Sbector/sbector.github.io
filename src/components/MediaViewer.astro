@@ -5,40 +5,49 @@ import ObraViewport from "./ObraViewport";
 type Obra = CollectionEntry<"obras">;
 
 interface Props {
-  mediaType?: Obra["data"]["mediaType"];
-  mediaSrc?: string;
-  mediaAlt?: string;
+  mediaContent?: Obra["data"]["media_content"];
   slug: string;
-  modelAutoRotate?: boolean;
-  modelEnvironment?: string;
-  modelFiles?: string[];
 }
 
-const { 
-  mediaType = "image", 
-  mediaSrc, 
-  mediaAlt = "", 
-  slug,
-  modelAutoRotate = true,
-  modelEnvironment = "city",
-  modelFiles
-} = Astro.props;
+const { mediaContent, slug } = Astro.props;
+
+// Helper function to assemble LOD array for 3D models
+// Order: Alto → Medio → Bajo → main_model (main_model as lowest quality fallback)
+function assembleLodArray(
+  main_model: string,
+  lods?: Array<{ nivel: string; file: string }>
+): string[] {
+  if (!lods || lods.length === 0) {
+    return [main_model];
+  }
+
+  const nivelOrder = { Alto: 0, Medio: 1, Bajo: 2 };
+  const sorted = [...lods].sort(
+    (a, b) => (nivelOrder[a.nivel as keyof typeof nivelOrder] ?? 99) - (nivelOrder[b.nivel as keyof typeof nivelOrder] ?? 99)
+  );
+
+  return [...sorted.map((l) => l.file), main_model];
+}
 ---
 
 <div class="w-full h-[60dvh] lg:flex-1 lg:h-full flex items-center justify-center px-1">
-  {mediaType === "image" && mediaSrc && (
+  {!mediaContent && (
+    <div class="text-muted text-sm">No media content</div>
+  )}
+
+  {mediaContent?._block === "imagen" && (
     <img
       transition:name={`img-${slug}`}
-      src={mediaSrc}
-      alt={mediaAlt}
+      src={mediaContent.src}
+      alt={mediaContent.alt || ""}
       class="max-h-[60dvh] lg:max-h-full w-auto object-contain"
       loading="eager"
     />
   )}
 
-  {mediaType === "video" && mediaSrc && (
+  {mediaContent?._block === "video" && (
     <video
-      src={mediaSrc}
+      src={mediaContent.src}
       autoplay
       muted
       loop
@@ -47,22 +56,25 @@ const {
     />
   )}
 
-  {mediaType === "iframe" && mediaSrc && (
+  {mediaContent?._block === "iframe" && (
     <iframe
-      src={mediaSrc}
+      src={mediaContent.url}
       class="w-full aspect-video"
       allow="autoplay; fullscreen"
       title={`Embedded media for ${slug}`}
     />
   )}
 
-  {mediaType === "model3d" && modelFiles && modelFiles.length > 0 && (
+  {mediaContent?._block === "modelo_3d" && (
     <div class="w-full h-full">
       <ObraViewport
         client:only="react"
-        modelFiles={modelFiles}
-        autoRotate={modelAutoRotate}
-        environment={modelEnvironment}
+        modelFiles={assembleLodArray(
+          mediaContent.main_model,
+          mediaContent.lods
+        )}
+        autoRotate={true}
+        environment="custom"
       />
     </div>
   )}

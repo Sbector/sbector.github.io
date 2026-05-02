@@ -28,13 +28,8 @@ const { Content } = await render(obra);
   >
     <!-- Media Viewer -->
     <MediaViewer
-      mediaType={obra.data.mediaType}
-      mediaSrc={obra.data.mediaSrc || obra.data.cover}
-      mediaAlt={obra.data.mediaAlt || obra.data.coverAlt}
+      mediaContent={obra.data.media_content}
       slug={obra.data.slug}
-      modelAutoRotate={obra.data.modelAutoRotate}
-      modelEnvironment={obra.data.modelEnvironment}
-      modelFiles={obra.data.modelFiles}
     />
 
     <!-- Ficha -->

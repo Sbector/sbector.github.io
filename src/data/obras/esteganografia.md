@@ -6,7 +6,9 @@ description: Aplicación para encriptación de imágenes
 status: published
 cover: /obras/esteganografia/cover.webp
 coverAlt: imagen recodificada
-mediaType: image
-mediaSrc: /obras/esteganografia/esteganografia.jpg
+media_content:
+  _block: imagen
+  src: /obras/esteganografia/esteganografia.jpg
+  alt: imagen recodificada
 bento: wide
 ---

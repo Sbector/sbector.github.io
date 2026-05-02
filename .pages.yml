@@ -73,7 +73,6 @@ content:
                 label: Niveles de Detalle (LOD)
                 type: object
                 list: # Permite repetir la selección [3]
-                  max: 3
                   collapsible:
                     summary: "{nivel} - {file}" # Muestra info rápida al colapsar [4]
                 fields:
