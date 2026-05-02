@@ -7,8 +7,9 @@ status: published
 cover: /obras/paricutin/cover.webp
 coverAlt: still del video paricutin
 mediaType: model3d
-mediaSrc: /obras/paricutin/pari2024.glb
 modelAutoRotate: true
+modelFiles:
+  - /obras/paricutin/pari2024.glb
 modelEnvironment: custom
 bento: small
 ---

@@ -11,6 +11,7 @@ interface Props {
   slug: string;
   modelAutoRotate?: boolean;
   modelEnvironment?: string;
+  modelFiles?: string[];
 }
 
 const { 
@@ -19,7 +20,8 @@ const {
   mediaAlt = "", 
   slug,
   modelAutoRotate = true,
-  modelEnvironment = "city"
+  modelEnvironment = "city",
+  modelFiles
 } = Astro.props;
 ---
 
@@ -54,11 +56,11 @@ const {
     />
   )}
 
-  {mediaType === "model3d" && mediaSrc && (
+  {mediaType === "model3d" && modelFiles && modelFiles.length > 0 && (
     <div class="w-full h-full">
       <ObraViewport
         client:only="react"
-        src={mediaSrc}
+        modelFiles={modelFiles}
         autoRotate={modelAutoRotate}
         environment={modelEnvironment}
       />

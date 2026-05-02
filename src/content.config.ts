@@ -36,6 +36,7 @@ const obras = defineCollection({
 
     modelAutoRotate: z.boolean().optional().default(true),
     modelEnvironment: z.string().optional(),
+    modelFiles: z.array(z.string()).optional(),
 
     bento: z
       .enum(["small", "wide", "tall", "large"])

@@ -1,9 +1,12 @@
-import React, { Suspense, useState, useEffect, useCallback } from 'react';
-import { Canvas, useLoader } from '@react-three/fiber';
-import { OrbitControls, Environment, Bounds, Lightformer } from '@react-three/drei';
+import React, { Suspense, useState, useEffect, useCallback, useRef } from 'react';
+import { Canvas, useLoader, useThree, useFrame } from '@react-three/fiber';
+import { OrbitControls, Environment, Bounds, Lightformer, useGLTF } from '@react-three/drei';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import * as THREE from 'three';
+
+// Set DRACO decoder path at module level for useGLTF
+useGLTF.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
 
 interface ModelProps {
   src: string;
@@ -44,8 +47,114 @@ function Model({ src, onProgress, onLoaded }: ModelProps) {
   return <primitive object={scene} />;
 }
 
+interface LodModelProps {
+  lods: string[];
+  onProgress: (progress: number) => void;
+  onLoaded: () => void;
+}
+
+function LodModel({ lods, onProgress, onLoaded }: LodModelProps) {
+  const { camera, size } = useThree();
+  const [activeLodIndex, setActiveLodIndex] = useState(0);
+  const [sphereRadius, setSphereRadius] = useState(1);
+  const groupRef = useRef<THREE.Group>(null);
+  const hasNotifiedLoad = useRef(false);
+  
+  // Preload all LODs at mount
+  useEffect(() => {
+    lods.forEach((lodPath) => {
+      useGLTF.preload(lodPath);
+    });
+  }, [lods]);
+
+  // Load the active LOD
+  const activeLodPath = lods[activeLodIndex];
+  const gltf = useLoader(GLTFLoader, activeLodPath, (loader) => {
+    const draco = new DRACOLoader();
+    draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
+    (loader as any).setDRACOLoader(draco);
+  });
+
+  // Calculate sphere radius on first load (from LOD0) or when LODs change
+  useEffect(() => {
+    if (lods.length === 0) return;
+    
+    const calculateRadius = async () => {
+      try {
+        const lod0Gltf = await useGLTF.preload(lods[0]);
+        const box = new THREE.Box3().setFromObject((lod0Gltf as any).scene);
+        const sphere = box.getBoundingSphere(new THREE.Sphere());
+        setSphereRadius(sphere.radius);
+      } catch (error) {
+        console.warn('Error calculating sphere radius:', error);
+        setSphereRadius(1);
+      }
+    };
+    calculateRadius();
+  }, [lods]);
+
+  // Notify load only once on initial mount, not on LOD changes
+  useEffect(() => {
+    if (!hasNotifiedLoad.current && gltf) {
+      hasNotifiedLoad.current = true;
+      onLoaded();
+    }
+  }, [gltf, onLoaded]);
+
+  // Update LOD based on projected screen size every frame
+  useFrame(() => {
+    if (!groupRef.current) return;
+
+    const worldCenter = new THREE.Vector3();
+    const box = new THREE.Box3().setFromObject(groupRef.current);
+    box.getCenter(worldCenter);
+
+    const distanceToCamera = camera.position.distanceTo(worldCenter);
+    
+    // Calculate projected pixel size
+    const vFOV = (camera as THREE.PerspectiveCamera).fov * Math.PI / 180;
+    const height = 2 * Math.tan(vFOV / 2) * distanceToCamera;
+    const pixelSize = (sphereRadius / distanceToCamera) * (size.height / height);
+
+    // LOD thresholds: dynamically calculated based on number of LODs
+    const thresholds = lods.length === 1 
+      ? [0]
+      : lods.length === 2
+      ? [150, 0]
+      : [300, 100, 0]; // For 3+ LODs: [high quality, medium, low quality, ...]
+
+    let newLodIndex = lods.length - 1;
+    for (let i = 0; i < thresholds.length; i++) {
+      if (pixelSize >= thresholds[i]) {
+        newLodIndex = i;
+        break;
+      }
+    }
+
+    if (newLodIndex !== activeLodIndex) {
+      setActiveLodIndex(newLodIndex);
+    }
+  });
+
+  const { scene } = gltf as any;
+
+  scene.traverse((child: any) => {
+    if (child instanceof THREE.Mesh && child.material) {
+      const material = child.material as THREE.MeshStandardMaterial;
+      if (!material.roughnessMap) material.roughness = 1;
+      if (!material.metalnessMap) material.metalness = 0;
+    }
+  });
+
+  return (
+    <group ref={groupRef}>
+      <primitive object={scene} />
+    </group>
+  );
+}
+
 interface ObraViewportProps {
-  src: string;
+  modelFiles: string[];
   autoRotate?: boolean;
   environment?: string;
 }
@@ -82,7 +191,7 @@ function LoadingBar({ progress, isLoading }: LoadingBarProps) {
 }
 
 export default function ObraViewport({ 
-  src, 
+  modelFiles,
   autoRotate = true, 
   environment = 'custom'
 }: ObraViewportProps) {
@@ -91,10 +200,11 @@ export default function ObraViewport({
   const [progress, setProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Reset loading state when modelFiles change
   useEffect(() => {
     setProgress(0);
     setIsLoading(true);
-  }, [src]);
+  }, [modelFiles]);
 
   const handleProgress = useCallback((p: number) => setProgress(p), []);
 
@@ -114,7 +224,19 @@ export default function ObraViewport({
         <ambientLight intensity={1} />
         <Suspense fallback={null}>
           <Bounds fit clip>
-            <Model src={src} onProgress={handleProgress} onLoaded={handleLoaded} />
+            {modelFiles.length > 1 ? (
+              <LodModel 
+                lods={modelFiles} 
+                onProgress={handleProgress} 
+                onLoaded={handleLoaded} 
+              />
+            ) : (
+              <Model 
+                src={modelFiles[0]} 
+                onProgress={handleProgress} 
+                onLoaded={handleLoaded} 
+              />
+            )}
           </Bounds>
           <OrbitControls 
             autoRotate={isAutoRotating}

@@ -7,8 +7,9 @@ status: published
 cover: /obras/chalchiuhtlicue/cover.webp
 coverAlt: chalchiuhtlicue
 mediaType: model3d
-mediaSrc: /obras/chalchiuhtlicue/chalchiuhtlicue2024.glb
 modelAutoRotate: true
+modelFiles:
+  - /obras/chalchiuhtlicue/chalchiuhtlicue2024.glb
 modelEnvironment: custom
 bento: tall
 ---

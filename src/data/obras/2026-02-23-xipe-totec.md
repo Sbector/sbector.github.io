@@ -7,8 +7,9 @@ status: published
 cover: /obras/xipe/cover.webp
 coverAlt: Xipe tótec (Monte Albán 600-900 d.C.)
 mediaType: model3d
-mediaSrc: /obras/xipe/xipeTotec.glb
 modelAutoRotate: true
+modelFiles:
+  - /obras/xipe/xipeTotec.glb
 modelEnvironment: custom
 bento: small
 ---

@@ -38,7 +38,7 @@ content:
         label: Tipo de media
         type: select
         options:
-          values: [image, video, iframe]
+          values: [image, video, iframe, model3d]
         default: image
 
       - name: mediaSrc
@@ -51,6 +51,18 @@ content:
         description: "Carga o selecciona el archivo de video (.mp4) o modelo 3D (.glb, .obj)"
 
       - { name: mediaAlt, label: Texto alternativo del media, type: string, required: false }
+
+      - { name: modelAutoRotate, label: Rotación automática (3D), type: boolean, default: true, required: false }
+
+      - { name: modelEnvironment, label: Iluminación de entorno (3D), type: string, required: false }
+
+      - name: modelFiles
+        label: Modelo(s) 3D (1 archivo = modelo simple, 2+ = LODs de mayor a menor calidad)
+        type: list
+        required: false
+        of:
+          type: file
+          extensions: ["glb", "gltf"]
 
       - name: bento
         label: Tamaño en grid
