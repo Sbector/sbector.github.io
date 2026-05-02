@@ -10,12 +10,11 @@ content:
     format: yaml-frontmatter
     filename: "{slug}.md"
     
-    # Configuración de la vista de lista
     view:
-      primary: title # Campo principal (etiqueta) [2]
-      fields: ["cover", "title", "year", "status"] # Campos que se mostrarán como columnas [2]
+      primary: title
+      fields: ["cover", "title", "year", "status"]
       default:
-        sort: year # Opcional: ordena por año por defecto [2]
+        sort: year
         order: desc
 
     fields:
@@ -34,35 +33,59 @@ content:
       - { name: cover, label: Imagen principal, type: image }
       - { name: coverAlt, label: Texto alternativo, type: string }
 
-      - name: mediaType
-        label: Tipo de media
-        type: select
-        options:
-          values: [image, video, iframe, model3d]
-        default: image
+      # SISTEMA DINÁMICO DE MEDIA (Sustituye a mediaType y mediaSrc)
+      - name: media_content
+        label: Contenido de Media
+        type: block # Permite elegir el esquema según el tipo [1]
+        description: "Selecciona el tipo de contenido para mostrar los campos específicos"
+        blocks:
+          - name: imagen
+            label: Imagen Estática
+            fields:
+              - { name: src, label: Archivo de imagen, type: image }
+              - { name: alt, label: Texto alternativo, type: string }
 
-      - name: mediaSrc
-        label: Fuente del media
-        # Cambiado a 'file' para habilitar el selector de medios y la carga de archivos [2, 6, 7]
-        type: file 
-        required: false
-        # Ahora 'extensions' es válido porque el tipo es 'file' [1, 2]
-        extensions: ["mp4", "webm", "glb", "gltf", "obj"]
-        description: "Carga o selecciona el archivo de video (.mp4) o modelo 3D (.glb, .obj)"
+          - name: video
+            label: Video Reproducible
+            fields:
+              - name: src
+                label: Archivo de video
+                type: file
+                extensions: ["mp4", "webm"]
+              - { name: alt, label: Texto alternativo, type: string }
 
-      - { name: mediaAlt, label: Texto alternativo del media, type: string, required: false }
+          - name: iframe
+            label: Contenido Externo (Iframe)
+            fields:
+              - { name: url, label: URL del Iframe, type: string }
 
-      - { name: modelAutoRotate, label: Rotación automática (3D), type: boolean, default: true, required: false }
-
-      - { name: modelEnvironment, label: Iluminación de entorno (3D), type: string, required: false }
-
-      - name: modelFiles
-        label: Modelo(s) 3D (1 archivo = modelo simple, 2+ = LODs de mayor a menor calidad)
-        type: list
-        required: false
-        of:
-          type: file
-          extensions: ["glb", "gltf"]
+          - name: modelo_3d
+            label: Objeto 3D
+            fields:
+              - name: main_model
+                label: Modelo Principal
+                type: file
+                extensions: ["glb", "gltf", "obj"]
+                description: "Archivo 3D base"
+              
+              # CONFIGURACIÓN FACILITADA PARA LOD
+              - name: lods
+                label: Niveles de Detalle (LOD)
+                type: object
+                list: # Permite repetir la selección [3]
+                  max: 3
+                  collapsible:
+                    summary: "{nivel} - {file}" # Muestra info rápida al colapsar [4]
+                fields:
+                  - name: nivel
+                    label: Nivel
+                    type: select
+                    options:
+                      values: [Bajo, Medio, Alto]
+                  - name: file
+                    label: Archivo del modelo
+                    type: file
+                    extensions: ["glb", "gltf", "obj"]
 
       - name: bento
         label: Tamaño en grid
@@ -73,8 +96,7 @@ content:
 
       - name: body
         label: Texto completo
-        # La clave 'body' es especial: guarda el contenido fuera de los metadatos YAML [6, 8]
-        type: rich-text 
+        type: rich-text # Mapea al contenido Markdown fuera del frontmatter [5]
         required: false
 
   - name: about
@@ -82,13 +104,6 @@ content:
     type: file
     path: src/data/about.md
     format: yaml-frontmatter
-
     fields:
-      - name: title
-        label: Título
-        type: string
-
-      - name: body
-        label: Contenido
-        # Mapea directamente al cuerpo del archivo Markdown [6, 8]
-        type: rich-text 
+      - { name: title, label: Título, type: string }
+      - { name: body, label: Contenido, type: rich-text }
