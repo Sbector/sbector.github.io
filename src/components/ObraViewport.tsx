@@ -52,7 +52,6 @@ interface ObraViewportProps {
 
 const ENVIRONMENT_PRESETS = [
   { id: 'custom', label: 'Custom' },
-  { id: 'studio', label: 'Studio' },
   { id: 'dawn', label: 'Dawn' },
   { id: 'sunset', label: 'Sunset' },
   { id: 'forest', label: 'Forest' },
@@ -119,7 +118,7 @@ export default function ObraViewport({
           </Bounds>
           <OrbitControls 
             autoRotate={isAutoRotating}
-            autoRotateSpeed={0.3}
+            autoRotateSpeed={0.5}
             enableZoom={true}
             enablePan={true}
           />
