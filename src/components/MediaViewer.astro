@@ -30,7 +30,28 @@ function assembleLodArray(
 }
 ---
 
-<div class="w-full h-[60dvh] lg:flex-1 lg:h-full flex items-center justify-center px-1">
+<div
+  id="media-viewer"
+  class="group relative w-full flex items-center justify-center px-1 overflow-hidden
+    h-[60dvh] lg:flex-1 lg:h-full
+    data-[fullscreen]:fixed data-[fullscreen]:inset-0 data-[fullscreen]:z-[100]
+    data-[fullscreen]:w-screen data-[fullscreen]:h-[100dvh]
+    data-[fullscreen]:bg-black data-[fullscreen]:px-0"
+>
+  <!-- Fullscreen toggle button (top-right) -->
+  <button
+    id="fullscreen-btn"
+    aria-label="Ver en pantalla completa"
+    class="absolute top-3 right-3 z-20 p-1.5 rounded-md bg-black/40 hover:bg-black/70 text-white/70 hover:text-white transition-colors backdrop-blur-sm"
+  >
+    <svg id="icon-expand" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+    </svg>
+    <svg id="icon-compress" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 9V4.5M9 9H4.5M9 9 3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5 5.25 5.25" />
+    </svg>
+  </button>
+
   {!mediaContent && (
     <div class="text-muted text-sm">No media content</div>
   )}
@@ -40,7 +61,8 @@ function assembleLodArray(
       transition:name={`img-${slug}`}
       src={mediaContent.src}
       alt={mediaContent.alt || ""}
-      class="max-h-[60dvh] lg:max-h-full w-auto object-contain"
+      class="max-h-[60dvh] lg:max-h-full w-auto object-contain
+        group-data-[fullscreen]:max-h-[100dvh] group-data-[fullscreen]:lg:max-h-[100dvh]"
       loading="eager"
     />
   )}
@@ -52,7 +74,8 @@ function assembleLodArray(
       muted
       loop
       playsinline
-      class="max-h-[60dvh] lg:max-h-full w-auto object-contain"
+      class="max-h-[60dvh] lg:max-h-full w-auto object-contain
+        group-data-[fullscreen]:max-h-[100dvh] group-data-[fullscreen]:lg:max-h-[100dvh]"
     />
   )}
 
@@ -66,7 +89,7 @@ function assembleLodArray(
   )}
 
   {mediaContent?._block === "modelo_3d" && (
-    <div class="w-full h-full">
+    <div class="absolute inset-0">
       <ObraViewport
         client:only="react"
         modelFiles={assembleLodArray(
@@ -79,3 +102,55 @@ function assembleLodArray(
     </div>
   )}
 </div>
+
+<script>
+  function setupMediaViewer() {
+    const viewer = document.getElementById("media-viewer");
+    if (!viewer) return;
+
+    const btn = document.getElementById("fullscreen-btn");
+    const iconExpand = document.getElementById("icon-expand");
+    const iconCompress = document.getElementById("icon-compress");
+
+    function enterFullscreen() {
+      viewer.setAttribute("data-fullscreen", "");
+      iconExpand?.classList.add("hidden");
+      iconCompress?.classList.remove("hidden");
+      btn?.setAttribute("aria-label", "Salir de pantalla completa");
+      document.body.style.overflow = "hidden";
+    }
+
+    function exitFullscreen() {
+      viewer.removeAttribute("data-fullscreen");
+      iconExpand?.classList.remove("hidden");
+      iconCompress?.classList.add("hidden");
+      btn?.setAttribute("aria-label", "Ver en pantalla completa");
+      document.body.style.overflow = "";
+      requestAnimationFrame(() => window.dispatchEvent(new Event("resize")));
+    }
+
+    btn?.addEventListener("click", () => {
+      viewer.hasAttribute("data-fullscreen") ? exitFullscreen() : enterFullscreen();
+    });
+
+    function handleKeydown(e: KeyboardEvent) {
+      if (e.key === "Escape" && viewer.hasAttribute("data-fullscreen")) {
+        exitFullscreen();
+      }
+    }
+    document.addEventListener("keydown", handleKeydown);
+
+    // Clean up overflow + listeners before SPA navigation
+    document.addEventListener(
+      "astro:before-preparation",
+      () => {
+        exitFullscreen();
+        document.removeEventListener("keydown", handleKeydown);
+      },
+      { once: true }
+    );
+  }
+
+  // Runs on initial load AND every SPA navigation
+  document.addEventListener("astro:page-load", setupMediaViewer);
+</script>
