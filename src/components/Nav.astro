@@ -92,44 +92,84 @@ const links = [
       </button>
     </div>
 
-    <!-- Mobile Hamburger Button (<md) -->
-    <button
-      id="mobile-menu-btn"
-      class="md:hidden hover:opacity-60 transition p-1"
-      aria-label="Abrir menú"
-      aria-expanded="false"
-    >
-      <svg
-        id="icon-hamburger"
-        xmlns="http://www.w3.org/2000/svg"
-        class="w-5 h-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="1.5"
+    <!-- Mobile Right Section: Theme Toggle + Hamburger Button -->
+    <div class="md:hidden flex items-center gap-3">
+      <!-- Mobile Theme Toggle Button -->
+      <button
+        id="mobile-theme-toggle"
+        class="hover:opacity-60 transition p-1"
+        aria-label="Cambiar tema"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
-        />
-      </svg>
-      <svg
-        id="icon-close"
-        xmlns="http://www.w3.org/2000/svg"
-        class="w-5 h-5 hidden"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="1.5"
+        <!-- Sun icon (shown in dark mode) -->
+        <svg
+          id="mobile-icon-sun"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-5 h-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg
+          id="mobile-icon-moon"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-5 h-5 hidden"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+          />
+        </svg>
+      </button>
+
+      <!-- Mobile Hamburger Button -->
+      <button
+        id="mobile-menu-btn"
+        class="hover:opacity-60 transition p-1"
+        aria-label="Abrir menú"
+        aria-expanded="false"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M6 18L18 6M6 6l12 12"
-        />
-      </svg>
-    </button>
+        <svg
+          id="icon-hamburger"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-5 h-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
+          />
+        </svg>
+        <svg
+          id="icon-close"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-5 h-5 hidden"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
 
   </nav>
 </header>
@@ -148,44 +188,6 @@ const links = [
         {link.label}
       </a>
     ))}
-    
-    <!-- Mobile Theme Toggle Button -->
-    <button
-      id="mobile-theme-toggle"
-      class="hover:opacity-60 transition p-2 flex items-center gap-2 text-sm tracking-wide py-2 -ml-2"
-      aria-label="Cambiar tema"
-    >
-      <!-- Sun icon -->
-      <svg
-        id="mobile-icon-sun"
-        xmlns="http://www.w3.org/2000/svg"
-        class="w-5 h-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <circle cx="12" cy="12" r="4" />
-        <path d="M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
-      </svg>
-      <!-- Moon icon -->
-      <svg
-        id="mobile-icon-moon"
-        xmlns="http://www.w3.org/2000/svg"
-        class="w-5 h-5 hidden"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="1.5"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
-        />
-      </svg>
-      <span id="mobile-theme-label">Tema oscuro</span>
-    </button>
   </div>
 </div>
 
@@ -226,7 +228,7 @@ const links = [
     desktopThemeToggle.updateThemeUI();
 
     // Mobile Theme Toggle
-    const mobileThemeToggle = toggleTheme('mobile-icon-sun', 'mobile-icon-moon', 'mobile-theme-label');
+    const mobileThemeToggle = toggleTheme('mobile-icon-sun', 'mobile-icon-moon', undefined);
     const mobileBtn = document.getElementById('mobile-theme-toggle');
     mobileBtn?.addEventListener('click', () => {
       mobileThemeToggle.toggleClick();
