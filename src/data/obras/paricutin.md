@@ -4,7 +4,7 @@ slug: paricutin
 year: 2023
 description: Fotogrametría
 status: published
-cover: /obras/paricutin/cover.webp
+cover: /obras/paricutin/paricutin.png
 coverAlt: still del video paricutin
 media_content:
   _block: modelo_3d
