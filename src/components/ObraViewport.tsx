@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect, useCallback, useRef } from 'react';
+import React, { Suspense, useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { Canvas, useLoader, useThree, useFrame } from '@react-three/fiber';
 import { OrbitControls, Environment, Bounds, Lightformer, useGLTF } from '@react-three/drei';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -200,6 +200,20 @@ export default function ObraViewport({
   const [progress, setProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Detect mobile device (evaluated once on mount)
+  const isMobile = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768;
+  }, []);
+
+  // Omit highest quality LOD on mobile to reduce initial load
+  const effectiveLodFiles = useMemo(() => {
+    if (isMobile && modelFiles.length > 1) {
+      return modelFiles.slice(1);
+    }
+    return modelFiles;
+  }, [modelFiles, isMobile]);
+
   // Reset loading state when modelFiles change
   useEffect(() => {
     setProgress(0);
@@ -224,15 +238,15 @@ export default function ObraViewport({
         <ambientLight intensity={1}/>
         <Suspense fallback={null}>
           <Bounds fit clip>
-            {modelFiles.length > 1 ? (
+            {effectiveLodFiles.length > 1 ? (
               <LodModel 
-                lods={modelFiles} 
+                lods={effectiveLodFiles} 
                 onProgress={handleProgress} 
                 onLoaded={handleLoaded} 
               />
             ) : (
               <Model 
-                src={modelFiles[0]} 
+                src={effectiveLodFiles[0]} 
                 onProgress={handleProgress} 
                 onLoaded={handleLoaded} 
               />
