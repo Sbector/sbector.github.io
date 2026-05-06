@@ -14,5 +14,7 @@ media_content:
       file: /obras/paricutin/paricutin_LOD0.glb
     - nivel: Medio
       file: /obras/paricutin/paricutin_LOD1.glb
+    - nivel: Bajo
+      file: /paricutin_LOD2.glb
 bento: small
 ---
