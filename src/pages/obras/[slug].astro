@@ -91,6 +91,7 @@ const { Content } = await render(obra);
         if (!btn || !section) return;
 
         function updateVisibility() {
+          if (!btn) return;
           if (window.scrollY > 100) {
             btn.style.opacity = '0';
             btn.style.pointerEvents = 'none';

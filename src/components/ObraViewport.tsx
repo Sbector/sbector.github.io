@@ -1,12 +1,19 @@
 import React, { Suspense, useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { Canvas, useLoader, useThree, useFrame } from '@react-three/fiber';
 import { OrbitControls, Environment, Bounds, Lightformer, useGLTF } from '@react-three/drei';
+// @ts-ignore -- three@0.184 bundled types not resolved under pnpm+bundler moduleResolution
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+// @ts-ignore
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+// @ts-ignore
 import * as THREE from 'three';
 
 // Set DRACO decoder path at module level for useGLTF
 useGLTF.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
+
+// React 19 / @react-three/drei type compatibility casts
+const _OrbitControls = OrbitControls as unknown as React.ComponentType<any>;
+const _Lightformer = Lightformer as unknown as React.ComponentType<any>;
 
 interface ModelProps {
   src: string;
@@ -44,7 +51,8 @@ function Model({ src, onProgress, onLoaded }: ModelProps) {
     }
   });
 
-  return <primitive object={scene} />;
+  // R3F intrinsic — not in JSX.IntrinsicElements without R3F type augmentation
+  return React.createElement('primitive' as any, { object: scene });
 }
 
 interface LodModelProps {
@@ -146,10 +154,8 @@ function LodModel({ lods, onProgress, onLoaded }: LodModelProps) {
     }
   });
 
-  return (
-    <group ref={groupRef}>
-      <primitive object={scene} />
-    </group>
+  return React.createElement('group' as any, { ref: groupRef },
+    React.createElement('primitive' as any, { object: scene })
   );
 }
 
@@ -235,7 +241,7 @@ export default function ObraViewport({
         style={{ width: '100%', height: '100%' }}
         gl={{ toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1, alpha: true }}
       >
-        <ambientLight intensity={1}/>
+        {React.createElement('ambientLight' as any, { intensity: 1 })}
         <Suspense fallback={null}>
           <Bounds fit clip>
             {effectiveLodFiles.length > 1 ? (
@@ -252,7 +258,7 @@ export default function ObraViewport({
               />
             )}
           </Bounds>
-          <OrbitControls 
+          <_OrbitControls
             autoRotate={isAutoRotating}
             autoRotateSpeed={0.5}
             enableZoom={true}
@@ -260,8 +266,8 @@ export default function ObraViewport({
           />
           {currentEnvironment === 'custom' ? (
             <Environment resolution={32} backgroundIntensity={0} background={false}>
-              <Lightformer position-z={-30} scale={40} intensity={5} form="ring" />
-              <Lightformer position-z={30} scale={40} intensity={5} form="ring" />
+              <_Lightformer position-z={-30} scale={40} intensity={5} form="ring" />
+              <_Lightformer position-z={30} scale={40} intensity={5} form="ring" />
             </Environment>
           ) : (
             <Environment preset={currentEnvironment as any} background={false} />
