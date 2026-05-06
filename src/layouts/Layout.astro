@@ -20,9 +20,20 @@ const { title, back } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<ClientRouter />
+		<script>
+			// Initialize theme as early as possible to prevent FOUC
+			// Default to 'dark' if no preference is stored
+			function applyTheme() {
+				const theme = localStorage.getItem('theme') || 'dark';
+				document.documentElement.setAttribute('data-theme', theme);
+			}
+			applyTheme();
+			// Reapply theme after SPA navigation (ClientRouter)
+			document.addEventListener('astro:after-swap', applyTheme);
+		</script>
 	</head>
 
-	<body class="bg-bg text-white overflow-x-hidden">
+	<body class="bg-bg text-text overflow-x-hidden">
 		<Nav {back} />
 		<main class="pt-10">
 			<slot />

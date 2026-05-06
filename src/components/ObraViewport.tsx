@@ -221,7 +221,7 @@ export default function ObraViewport({
         style={{ width: '100%', height: '100%' }}
         gl={{ toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1, alpha: true }}
       >
-        <ambientLight intensity={1} />
+        <ambientLight intensity={1}/>
         <Suspense fallback={null}>
           <Bounds fit clip>
             {modelFiles.length > 1 ? (

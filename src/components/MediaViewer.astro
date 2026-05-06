@@ -34,9 +34,9 @@ function assembleLodArray(
   id="media-viewer"
   class="group relative w-full flex items-center justify-center px-1 overflow-hidden
     h-[60dvh] lg:flex-1 lg:h-full
-    data-[fullscreen]:fixed data-[fullscreen]:inset-0 data-[fullscreen]:z-[100]
-    data-[fullscreen]:w-screen data-[fullscreen]:h-[100dvh]
-    data-[fullscreen]:bg-black data-[fullscreen]:px-0"
+    data-fullscreen:fixed data-fullscreen:inset-0 data-fullscreen:z-100
+    data-fullscreen:w-screen data-fullscreen:h-dvh
+    data-fullscreen:bg-bg data-fullscreen:px-0"
 >
   <!-- Fullscreen toggle button (top-right) -->
   <button
@@ -62,7 +62,7 @@ function assembleLodArray(
       src={mediaContent.src}
       alt={mediaContent.alt || ""}
       class="max-h-[60dvh] lg:max-h-full w-auto object-contain
-        group-data-[fullscreen]:max-h-[100dvh] group-data-[fullscreen]:lg:max-h-[100dvh]"
+        group-data-fullscreen:max-h-dvh group-data-fullscreen:lg:max-h-dvh"
       loading="eager"
     />
   )}
@@ -75,7 +75,7 @@ function assembleLodArray(
       loop
       playsinline
       class="max-h-[60dvh] lg:max-h-full w-auto object-contain
-        group-data-[fullscreen]:max-h-[100dvh] group-data-[fullscreen]:lg:max-h-[100dvh]"
+        group-data-fullscreen:max-h-dvh group-data-fullscreen:lg:max-h-dvh"
     />
   )}
 
@@ -113,6 +113,7 @@ function assembleLodArray(
     const iconCompress = document.getElementById("icon-compress");
 
     function enterFullscreen() {
+      if (!viewer) return;
       viewer.setAttribute("data-fullscreen", "");
       iconExpand?.classList.add("hidden");
       iconCompress?.classList.remove("hidden");
@@ -121,6 +122,7 @@ function assembleLodArray(
     }
 
     function exitFullscreen() {
+      if (!viewer) return;
       viewer.removeAttribute("data-fullscreen");
       iconExpand?.classList.remove("hidden");
       iconCompress?.classList.add("hidden");
@@ -130,10 +132,12 @@ function assembleLodArray(
     }
 
     btn?.addEventListener("click", () => {
+      if (!viewer) return;
       viewer.hasAttribute("data-fullscreen") ? exitFullscreen() : enterFullscreen();
     });
 
     function handleKeydown(e: KeyboardEvent) {
+      if (!viewer) return;
       if (e.key === "Escape" && viewer.hasAttribute("data-fullscreen")) {
         exitFullscreen();
       }
