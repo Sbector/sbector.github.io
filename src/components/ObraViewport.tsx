@@ -205,6 +205,8 @@ export default function ObraViewport({
   const [isAutoRotating, setIsAutoRotating] = useState(autoRotate);
   const [progress, setProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [showEnvPanel, setShowEnvPanel] = useState(false);
+  const controlsRef = useRef<HTMLDivElement>(null);
 
   // Detect mobile device (evaluated once on mount)
   const isMobile = useMemo(() => {
@@ -232,6 +234,24 @@ export default function ObraViewport({
     setProgress(100);
     setTimeout(() => setIsLoading(false), 300);
   }, []);
+
+  // Click-outside handler to close env panel
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent | TouchEvent) {
+      if (controlsRef.current && !controlsRef.current.contains(e.target as Node)) {
+        setShowEnvPanel(false);
+      }
+    }
+
+    if (showEnvPanel) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener('touchstart', handleClickOutside);
+      };
+    }
+  }, [showEnvPanel]);
 
   return (
     <div className="relative w-full h-full">
@@ -276,7 +296,10 @@ export default function ObraViewport({
       </Canvas>
       
       {/* Controls overlay */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 bg-black/50 rounded-lg px-3 py-2 backdrop-blur-sm items-center">
+      <div
+        ref={controlsRef}
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 bg-black/50 rounded-lg px-3 py-2 backdrop-blur-sm items-center"
+      >
         {/* Auto-rotate toggle */}
         <button
           onClick={() => setIsAutoRotating(!isAutoRotating)}
@@ -294,20 +317,43 @@ export default function ObraViewport({
         
         <div className="h-4 w-px bg-neutral-600" />
         
-        {/* Environment selector */}
-        {ENVIRONMENT_PRESETS.map((preset) => (
-          <button
-            key={preset.id}
-            onClick={() => setCurrentEnvironment(preset.id)}
-            className={`px-3 py-1 text-xs rounded transition-colors ${
-              currentEnvironment === preset.id
-                ? 'bg-white text-black font-semibold'
-                : 'text-neutral-300 hover:text-white'
-            }`}
-          >
-            {preset.label}
-          </button>
-        ))}
+        {/* Landscape toggle button */}
+        <button
+          onClick={() => setShowEnvPanel(!showEnvPanel)}
+          className="px-2 py-1 text-xs rounded transition-colors flex items-center"
+          title={showEnvPanel ? 'Ocultar entornos' : 'Mostrar entornos'}
+          style={{
+            backgroundColor: showEnvPanel ? 'rgba(255, 255, 255, 0.15)' : 'transparent',
+            color: 'white'
+          }}
+        >
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </button>
+
+        {/* Environment selector (conditionally rendered) */}
+        {showEnvPanel && (
+          <>
+            <div className="h-4 w-px bg-neutral-600" />
+            {ENVIRONMENT_PRESETS.map((preset) => (
+              <button
+                key={preset.id}
+                onClick={() => {
+                  setCurrentEnvironment(preset.id);
+                  setShowEnvPanel(false);
+                }}
+                className={`px-3 py-1 text-xs rounded transition-colors ${
+                  currentEnvironment === preset.id
+                    ? 'bg-white text-black font-semibold'
+                    : 'text-neutral-300 hover:text-white'
+                }`}
+              >
+                {preset.label}
+              </button>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
