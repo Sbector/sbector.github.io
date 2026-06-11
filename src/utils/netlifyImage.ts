@@ -1,8 +1,14 @@
+export type NetlifyImageFit = "cover" | "contain";
+
 export function netlifyImage(
   src: string,
   width: number,
   height?: number,
-  options: { fit?: "cover" | "contain"; format?: "avif" | "webp" | "jpg" } = {}
+  options: {
+    fit?: NetlifyImageFit;
+    format?: "avif" | "webp" | "jpg";
+    preserveAspectRatio?: boolean;
+  } = {}
 ): string {
   if (!import.meta.env.NETLIFY) {
     return src;
@@ -17,6 +23,10 @@ export function netlifyImage(
 
   if (height) {
     params.set("h", String(height));
+  }
+
+  if (options.preserveAspectRatio === false) {
+    params.set("fit", "cover");
   }
 
   return `/.netlify/images?${params.toString()}`;
