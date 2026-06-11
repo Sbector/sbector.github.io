@@ -2,7 +2,7 @@
 title: Inconspicuo
 slug: inconspicuo2025
 year: 2025
-description: Intervención
+description: Intervención del sistema de iluminación
 status: published
 cover: /obras/inconspicuo/cover2025.webp
 coverAlt: Intervención durante Balcones 3
