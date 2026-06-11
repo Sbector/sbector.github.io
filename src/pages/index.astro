@@ -23,8 +23,8 @@ const obras = (await getCollection("obras"))
       grid-flow-dense
     "
   >
-    {obras.map((obra) => (
-      <BentoCard obra={obra} />
+    {obras.map((obra, index) => (
+      <BentoCard obra={obra} priority={index < 4} />
     ))}
   </div>
 </Layout>

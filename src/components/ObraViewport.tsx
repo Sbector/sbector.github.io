@@ -1,6 +1,7 @@
 import React, { Suspense, useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { Canvas, useLoader, useThree, useFrame } from '@react-three/fiber';
 import { OrbitControls, Environment, Bounds, Lightformer, useGLTF } from '@react-three/drei';
+import { EffectComposer, N8AO } from '@react-three/postprocessing';
 // @ts-ignore -- three@0.184 bundled types not resolved under pnpm+bundler moduleResolution
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 // @ts-ignore
@@ -14,6 +15,9 @@ useGLTF.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/'
 // React 19 / @react-three/drei type compatibility casts
 const _OrbitControls = OrbitControls as unknown as React.ComponentType<any>;
 const _Lightformer = Lightformer as unknown as React.ComponentType<any>;
+const _EffectComposer = EffectComposer as unknown as React.ComponentType<any>;
+// @ts-ignore -- N8AO props have compat issues with React 19 strict mode
+const _N8AO = N8AO as unknown as React.ComponentType<any>;
 
 interface ModelProps {
   src: string;
@@ -291,6 +295,14 @@ export default function ObraViewport({
             </Environment>
           ) : (
             <Environment preset={currentEnvironment as any} background={false} />
+          )}
+          
+          {/* Post-processing: N8AO Ambient Occlusion (desktop only) */}
+          {!isMobile && (
+            <_EffectComposer multisampling={0}>
+              {/* @ts-ignore -- N8AO prop types have React 19 compat issues */}
+              <_N8AO intensity={1.5} aoRadius={1} distanceFalloff={0.2} screenSpaceRadius />
+            </_EffectComposer>
           )}
         </Suspense>
       </Canvas>

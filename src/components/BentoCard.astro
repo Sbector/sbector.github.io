@@ -1,15 +1,33 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { netlifyImage } from "@/utils/netlifyImage";
 
 type Obra = CollectionEntry<"obras">;
 
-const { obra } = Astro.props as { obra: Obra };
+interface Props {
+  obra: Obra;
+  priority?: boolean;
+}
+
+const { obra, priority = false } = Astro.props as Props;
 
 const spanClasses: Partial<Record<Obra["data"]["bento"], string>> = {
   wide: "sm:col-span-2",
   tall: "row-span-2",
   large: "lg:col-span-2 lg:row-span-2",
 };
+
+const sizeMap = {
+  small: { width: 400, height: 220 },
+  wide: { width: 800, height: 220 },
+  tall: { width: 400, height: 440 },
+  large: { width: 800, height: 440 },
+} as const;
+
+const imageSize = sizeMap[obra.data.bento] ?? sizeMap.small;
+const cover = obra.data.cover ?? "";
+const imageSrc = netlifyImage(cover, imageSize.width, imageSize.height);
+const imageSrc2x = netlifyImage(cover, imageSize.width * 2, imageSize.height * 2);
 ---
 
 <a
@@ -23,9 +41,15 @@ const spanClasses: Partial<Record<Obra["data"]["bento"], string>> = {
 >
   <img
     transition:name={`img-${obra.data.slug}`}
-    src={obra.data.cover}
+    src={imageSrc}
+    srcset={`${imageSrc} 1x, ${imageSrc2x} 2x`}
+    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+    width={imageSize.width}
+    height={imageSize.height}
     alt={obra.data.coverAlt}
-    loading="lazy"
+    loading={priority ? "eager" : "lazy"}
+    fetchpriority={priority ? "high" : undefined}
+    decoding="async"
     class="
       w-full
       h-full
