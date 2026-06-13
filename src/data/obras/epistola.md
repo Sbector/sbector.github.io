@@ -3,7 +3,7 @@ title: Epistola
 slug: epistola
 year: 2021
 description: Arte postal
-status: published
+status: draft
 cover: /obras/epistola/cover.webp
 coverAlt: Epistola
 media_content:
