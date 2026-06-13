@@ -3,7 +3,7 @@ title: El castillo
 slug: castillo
 year: 2013
 description: Offset tradicional (2000 ejemplares), 27.94 X 21.59 cm
-status: archived
+status: published
 cover: /obras/castillo/cover.webp
 coverAlt: intervención en LAJM
 media_content:
