@@ -1,5 +1,5 @@
 ---
-title: shuiata
+title: shuniata
 slug: shuniata
 year: 2012
 description: Instalación virtual
