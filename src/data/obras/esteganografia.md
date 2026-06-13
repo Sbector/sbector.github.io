@@ -3,7 +3,7 @@ title: Esteganografía
 slug: esteganografia
 year: 2020
 description: Aplicación para encriptación de imágenes
-status: published
+status: draft
 cover: /obras/esteganografia/cover.webp
 coverAlt: imagen recodificada
 media_content:
