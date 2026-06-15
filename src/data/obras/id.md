@@ -4,11 +4,11 @@ slug: id
 year: 2011
 description: Video mono canal (animación) 2'47''
 status: published
-cover: /obras/id/cover.webp
+cover: /obras/id/id.jpg
 coverAlt: still del video id
 media_content:
   _block: video
-  src: /obras/id/fragmento.mp4
+  src: /obras/id/RecorteWebComp.mp4
   alt: still del video id
 bento: small
 ---
