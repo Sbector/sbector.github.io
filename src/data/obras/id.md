@@ -10,7 +10,7 @@ media_content:
   _block: video
   src: /obras/id/RecorteWebComp.mp4
   alt: still del video id
-bento: small
+bento: tall
 ---
 "Id" es una obra que surgió de una profunda reflexión sobre la identidad, entendiéndola no como un concepto fijo, sino como una construcción en constante evolución. La obra nació en un período de intensa exploración personal, influenciada por búsquedas espirituales y un interés creciente en filosofías orientales. 
 
