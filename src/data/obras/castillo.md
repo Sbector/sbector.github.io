@@ -8,6 +8,8 @@ cover: /obras/castillo/Render1(noisy).webp
 coverAlt: intervención en LAJM
 media_content:
   - _block: imagen
+    src: /obras/castillo/Render1(noisy).webp
+  - _block: imagen
     src: /obras/castillo/ElCastillo(LAJM).jpg
     alt: Frente de impresión
 bento: large
