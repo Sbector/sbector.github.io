@@ -4,12 +4,12 @@ slug: castillo
 year: 2013
 description: Offset tradicional (2000 ejemplares), 27.94 X 21.59 cm
 status: published
-cover: /obras/castillo/cover.webp
+cover: /obras/castillo/Test.webp
 coverAlt: intervención en LAJM
 media_content:
   _block: imagen
-  src: /obras/castillo/cover.jpg
-  alt: intervención en LAJM
+  src: /obras/castillo/Test.webp
+  alt: Render de el Castillo en su locación original
 bento: small
 ---
 Buscando desmitificar la figura del artista contemporáneo, me atrajo la idea de utilizar un recurso gráfico cotidiano: los instructivos de armado de modelos a escala. Esta elección no fue casual, sino una vía para acercar el proceso creativo al espectador, permitiendo que la obra se construyera, conceptualmente, en su propia imaginación.
