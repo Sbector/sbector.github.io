@@ -5,8 +5,20 @@ import ObraViewport from "./ObraViewport";
 
 type Obra = CollectionEntry<"obras">;
 
+type MediaBlock =
+  | { _block: "imagen"; src: string; alt?: string | undefined }
+  | { _block: "video"; src: string; alt?: string | undefined }
+  | { _block: "iframe"; url: string }
+  | {
+      _block: "modelo_3d";
+      main_model: string;
+      lods?: Array<{ nivel: string; file: string }> | undefined;
+    };
+
+type MediaContent = MediaBlock | MediaBlock[] | undefined;
+
 interface Props {
-  mediaContent?: Obra["data"]["media_content"];
+  mediaContent?: MediaContent;
   slug: string;
 }
 
@@ -29,6 +41,14 @@ function assembleLodArray(
 
   return [...sorted.map((l) => l.file), main_model];
 }
+
+const mediaItems = (Array.isArray(mediaContent)
+  ? mediaContent
+  : mediaContent
+    ? [mediaContent]
+    : []) as MediaBlock[];
+
+const hasMultiple = mediaItems.length > 1;
 ---
 
 <div
@@ -53,59 +73,95 @@ function assembleLodArray(
     </svg>
   </button>
 
-  {!mediaContent && (
+  {mediaItems.length === 0 && (
     <div class="text-muted text-sm">No media content</div>
   )}
 
-  {mediaContent?._block === "imagen" && (
-    <img
-      transition:name={`img-${slug}`}
-      src={netlifyImage(mediaContent.src, 1600, undefined, { fit: "contain", preserveAspectRatio: true })}
-      srcset={`${netlifyImage(mediaContent.src, 800, undefined, { fit: "contain", preserveAspectRatio: true })} 800w, ${netlifyImage(mediaContent.src, 1200, undefined, { fit: "contain", preserveAspectRatio: true })} 1200w, ${netlifyImage(mediaContent.src, 1600, undefined, { fit: "contain", preserveAspectRatio: true })} 1600w`}
-      sizes="(min-width: 1024px) 75vw, 100vw"
-      width="1600"
-      alt={mediaContent.alt || ""}
-      class="max-h-[60dvh] lg:max-h-full w-auto object-contain
-        group-data-fullscreen:w-full group-data-fullscreen:h-full
-        group-data-fullscreen:max-h-dvh group-data-fullscreen:lg:max-h-dvh"
-      loading="eager"
-      fetchpriority="high"
-      decoding="async"
-    />
-  )}
+  {mediaItems.length > 0 && (
+    <div class="relative h-full w-full">
+      {hasMultiple && (
+        <>
+          <button
+            id="btn-prev"
+            aria-label="Ver anterior"
+            class="absolute left-3 top-1/2 z-20 hidden -translate-y-1/2 rounded-md bg-black/40 p-1.5 text-white/70 backdrop-blur-sm transition-colors hover:bg-black/70 hover:text-white"
+          >
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+            </svg>
+          </button>
+          <button
+            id="btn-next"
+            aria-label="Ver siguiente"
+            class="absolute right-3 top-1/2 z-20 -translate-y-1/2 rounded-md bg-black/40 p-1.5 text-white/70 backdrop-blur-sm transition-colors hover:bg-black/70 hover:text-white"
+          >
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+            </svg>
+          </button>
+        </>
+      )}
 
-  {mediaContent?._block === "video" && (
-    <video
-      src={mediaContent.src}
-      autoplay
-      muted
-      loop
-      playsinline
-      class="max-h-[60dvh] lg:max-h-full w-auto object-contain
-        group-data-fullscreen:max-h-dvh group-data-fullscreen:lg:max-h-dvh"
-    />
-  )}
+      <div class="relative h-full w-full">
+        {mediaItems.map((item, index) => (
+          <div
+            data-slide={index}
+            class:list={[
+              "absolute inset-0 flex items-center justify-center transition-opacity duration-300",
+              index === 0 ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
+            ]}
+          >
+            {item._block === "imagen" && (
+              <img
+                transition:name={index === 0 ? `img-${slug}` : undefined}
+                src={netlifyImage(item.src, 1600, undefined, { fit: "contain", preserveAspectRatio: true })}
+                srcset={`${netlifyImage(item.src, 800, undefined, { fit: "contain", preserveAspectRatio: true })} 800w, ${netlifyImage(item.src, 1200, undefined, { fit: "contain", preserveAspectRatio: true })} 1200w, ${netlifyImage(item.src, 1600, undefined, { fit: "contain", preserveAspectRatio: true })} 1600w`}
+                sizes="(min-width: 1024px) 75vw, 100vw"
+                width="1600"
+                alt={item.alt || ""}
+                class="max-h-[60dvh] lg:max-h-full w-auto object-contain
+                  group-data-fullscreen:w-full group-data-fullscreen:h-full
+                  group-data-fullscreen:max-h-dvh group-data-fullscreen:lg:max-h-dvh"
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchpriority={index === 0 ? "high" : undefined}
+                decoding="async"
+              />
+            )}
 
-  {mediaContent?._block === "iframe" && (
-    <iframe
-      src={mediaContent.url}
-      class="w-full aspect-video"
-      allow="autoplay; fullscreen"
-      title={`Embedded media for ${slug}`}
-    />
-  )}
+            {item._block === "video" && (
+              <video
+                src={item.src}
+                autoplay
+                muted
+                loop
+                playsinline
+                class="max-h-[60dvh] lg:max-h-full w-auto object-contain
+                  group-data-fullscreen:max-h-dvh group-data-fullscreen:lg:max-h-dvh"
+              />
+            )}
 
-  {mediaContent?._block === "modelo_3d" && (
-    <div class="absolute inset-0">
-      <ObraViewport
-        client:only="react"
-        modelFiles={assembleLodArray(
-          mediaContent.main_model,
-          mediaContent.lods
-        )}
-        autoRotate={true}
-        environment="custom"
-      />
+            {item._block === "iframe" && (
+              <iframe
+                src={item.url}
+                class="w-full aspect-video"
+                allow="autoplay; fullscreen"
+                title={`Embedded media for ${slug}`}
+              />
+            )}
+
+            {item._block === "modelo_3d" && (
+              <div class="absolute inset-0">
+                <ObraViewport
+                  client:only="react"
+                  modelFiles={assembleLodArray(item.main_model, item.lods)}
+                  autoRotate={true}
+                  environment="custom"
+                />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   )}
 </div>
@@ -118,6 +174,40 @@ function assembleLodArray(
     const btn = document.getElementById("fullscreen-btn");
     const iconExpand = document.getElementById("icon-expand");
     const iconCompress = document.getElementById("icon-compress");
+    const prevBtn = document.getElementById("btn-prev");
+    const nextBtn = document.getElementById("btn-next");
+    const slides = Array.from(viewer.querySelectorAll<HTMLElement>("[data-slide]"));
+    let currentIndex = 0;
+
+    function updateArrows() {
+      if (!prevBtn || !nextBtn) return;
+
+      if (slides.length <= 1) {
+        prevBtn.classList.add("hidden");
+        nextBtn.classList.add("hidden");
+        return;
+      }
+
+      prevBtn.classList.toggle("hidden", currentIndex === 0);
+      nextBtn.classList.toggle("hidden", currentIndex >= slides.length - 1);
+    }
+
+    function setActiveSlide(index: number) {
+      if (slides.length === 0) return;
+
+      const safeIndex = Math.max(0, Math.min(index, slides.length - 1));
+      currentIndex = safeIndex;
+
+      slides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === currentIndex;
+        slide.classList.toggle("opacity-100", isActive);
+        slide.classList.toggle("pointer-events-auto", isActive);
+        slide.classList.toggle("opacity-0", !isActive);
+        slide.classList.toggle("pointer-events-none", !isActive);
+      });
+
+      updateArrows();
+    }
 
     function enterFullscreen() {
       if (!viewer) return;
@@ -143,25 +233,42 @@ function assembleLodArray(
       viewer.hasAttribute("data-fullscreen") ? exitFullscreen() : enterFullscreen();
     });
 
+    prevBtn?.addEventListener("click", () => {
+      setActiveSlide(currentIndex - 1);
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      setActiveSlide(currentIndex + 1);
+    });
+
     function handleKeydown(e: KeyboardEvent) {
       if (!viewer) return;
+
       if (e.key === "Escape" && viewer.hasAttribute("data-fullscreen")) {
         exitFullscreen();
+        return;
+      }
+
+      if (slides.length <= 1) return;
+
+      if (e.key === "ArrowRight") {
+        setActiveSlide(currentIndex + 1);
+      } else if (e.key === "ArrowLeft") {
+        setActiveSlide(currentIndex - 1);
       }
     }
+
     document.addEventListener("keydown", handleKeydown);
 
-    // Clean up overflow + listeners before SPA navigation
-    document.addEventListener(
-      "astro:before-preparation",
-      () => {
-        exitFullscreen();
-        document.removeEventListener("keydown", handleKeydown);
-      },
-      { once: true }
-    );
+    setActiveSlide(0);
+
+    const cleanup = () => {
+      exitFullscreen();
+      document.removeEventListener("keydown", handleKeydown);
+    };
+
+    document.addEventListener("astro:before-preparation", cleanup, { once: true });
   }
 
-  // Runs on initial load AND every SPA navigation
   document.addEventListener("astro:page-load", setupMediaViewer);
 </script>

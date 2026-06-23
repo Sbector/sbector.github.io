@@ -37,6 +37,7 @@ content:
       - name: media_content
         label: Contenido de Media
         type: block # Permite elegir el esquema según el tipo [1]
+        list: true
         description: "Selecciona el tipo de contenido para mostrar los campos específicos"
         blocks:
           - name: imagen

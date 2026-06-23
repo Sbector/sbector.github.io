@@ -11,35 +11,37 @@ const about = defineCollection({
   }),
 });
 
+const mediaBlockSchema = z.discriminatedUnion("_block", [
+  z.object({
+    _block: z.literal("imagen"),
+    src: z.string(),
+    alt: z.string().optional(),
+  }),
+  z.object({
+    _block: z.literal("video"),
+    src: z.string(),
+    alt: z.string().optional(),
+  }),
+  z.object({
+    _block: z.literal("iframe"),
+    url: z.string(),
+  }),
+  z.object({
+    _block: z.literal("modelo_3d"),
+    main_model: z.string(),
+    lods: z
+      .array(
+        z.object({
+          nivel: z.enum(["Bajo", "Medio", "Alto"]),
+          file: z.string(),
+        })
+      )
+      .optional(),
+  }),
+]);
+
 const mediaContentSchema = z
-  .discriminatedUnion("_block", [
-    z.object({
-      _block: z.literal("imagen"),
-      src: z.string(),
-      alt: z.string().optional(),
-    }),
-    z.object({
-      _block: z.literal("video"),
-      src: z.string(),
-      alt: z.string().optional(),
-    }),
-    z.object({
-      _block: z.literal("iframe"),
-      url: z.string(),
-    }),
-    z.object({
-      _block: z.literal("modelo_3d"),
-      main_model: z.string(),
-      lods: z
-        .array(
-          z.object({
-            nivel: z.enum(["Bajo", "Medio", "Alto"]),
-            file: z.string(),
-          })
-        )
-        .optional(),
-    }),
-  ])
+  .union([mediaBlockSchema, z.array(mediaBlockSchema)])
   .optional();
 
 const obras = defineCollection({
