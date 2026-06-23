@@ -7,6 +7,7 @@
   --color-text: oklch(83% 0 0);
   --color-muted: oklch(66% 0 0);
   --color-heading: oklch(100% 0 0);
+  --color-white: oklch(100% 0 0);
   --spacing-nav: 2.5rem;
 }
 
