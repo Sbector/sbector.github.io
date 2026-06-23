@@ -49,6 +49,8 @@ const mediaItems = (Array.isArray(mediaContent)
     : []) as MediaBlock[];
 
 const hasMultiple = mediaItems.length > 1;
+const controlButtonClass =
+  "z-20 p-1.5 rounded-md bg-black/40 hover:bg-black/70 text-white/70 hover:text-white transition-all duration-200 backdrop-blur-sm opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 focus:opacity-100 [@media(hover:none)]:opacity-100";
 ---
 
 <div
@@ -63,7 +65,7 @@ const hasMultiple = mediaItems.length > 1;
   <button
     id="fullscreen-btn"
     aria-label="Ver en pantalla completa"
-    class="absolute top-3 right-3 z-20 p-1.5 rounded-md bg-black/40 hover:bg-black/70 text-white/70 hover:text-white transition-colors backdrop-blur-sm"
+    class={`absolute top-3 right-3 ${controlButtonClass}`}
   >
     <svg id="icon-expand" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
@@ -84,7 +86,7 @@ const hasMultiple = mediaItems.length > 1;
           <button
             id="btn-prev"
             aria-label="Ver anterior"
-            class="absolute left-3 top-1/2 z-20 hidden -translate-y-1/2 rounded-md bg-black/40 p-1.5 text-white/70 backdrop-blur-sm transition-colors hover:bg-black/70 hover:text-white"
+            class={`absolute left-3 top-1/2 -translate-y-1/2 ${controlButtonClass} hidden`}
           >
             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
@@ -93,7 +95,7 @@ const hasMultiple = mediaItems.length > 1;
           <button
             id="btn-next"
             aria-label="Ver siguiente"
-            class="absolute right-3 top-1/2 z-20 -translate-y-1/2 rounded-md bg-black/40 p-1.5 text-white/70 backdrop-blur-sm transition-colors hover:bg-black/70 hover:text-white"
+            class={`absolute right-3 top-1/2 -translate-y-1/2 ${controlButtonClass}`}
           >
             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
               <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
