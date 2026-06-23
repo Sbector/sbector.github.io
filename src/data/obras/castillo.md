@@ -4,11 +4,11 @@ slug: castillo
 year: 2013
 description: Offset tradicional (2000 ejemplares), 27.94 X 21.59 cm
 status: published
-cover: /obras/castillo/Test.webp
+cover: /obras/castillo/Render1(noisy).webp
 coverAlt: intervención en LAJM
 media_content:
   _block: imagen
-  src: /obras/castillo/Test.webp
+  src: /obras/castillo/Render1(noisy).webp
   alt: Render de el Castillo en su locación original
 bento: large
 ---
