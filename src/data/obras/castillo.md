@@ -7,9 +7,9 @@ status: published
 cover: /obras/castillo/Render1(noisy).webp
 coverAlt: intervención en LAJM
 media_content:
-  _block: imagen
-  src: /obras/castillo/Render1(noisy).webp
-  alt: Render de el Castillo en su locación original
+  - _block: imagen
+    src: /obras/castillo/ElCastillo(LAJM).jpg
+    alt: Frente de impresión
 bento: large
 ---
 Buscando desmitificar la figura del artista contemporáneo, me atrajo la idea de utilizar un recurso gráfico cotidiano: los instructivos de armado de modelos a escala. Esta elección no fue casual, sino una vía para acercar el proceso creativo al espectador, permitiendo que la obra se construyera, conceptualmente, en su propia imaginación.
