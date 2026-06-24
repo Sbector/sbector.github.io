@@ -7,9 +7,9 @@ status: published
 cover: /obras/inconspicuo/cover.webp
 coverAlt: still del video inconspicuo
 media_content:
-  - _block: imagen
-    src: /obras/inconspicuo/inconspicuo2018.jpg
-    alt: still del video inconspicuo
+  - _block: video
+    src: /obras/inconspicuo/inconspicuo_2018_web_extract.mp4
+    alt: Extracto de inconspicuo 2018
 bento: wide
 ---
 [Inconspicuo 2020](https://sbector.com/obras/inconspicuo2020/)
