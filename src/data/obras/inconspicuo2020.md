@@ -9,7 +9,10 @@ coverAlt: colage digital de escena apocaliptica
 media_content:
   - _block: imagen
     src: /obras/inconspicuo/inconspicuo2020.jpg
-    alt: colage digital de escena apocaliptica
+    alt: Intervención inconspicuo en casa Rayón
+  - _block: video
+    src: /obras/inconspicuo/insconspicuo_2020_web_extract.mp4
+    alt: Intervención inconspicuo en casa Rayón
 bento: tall
 ---
 [Inconspicuo 2018](https://sbector.com/obras/inconspicuo2018/)
