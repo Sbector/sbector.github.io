@@ -7,11 +7,11 @@ status: published
 cover: /obras/inconspicuo/cover2025.webp
 coverAlt: Intervención durante Balcones 3
 media_content:
-  - _block: imagen
-    src: /obras/inconspicuo/cover2025.webp
-    alt: Intervención durante Balcones 3
   - _block: video
     src: /obras/inconspicuo/Inconspicuo 2025 Web Extract_comp.mp4
+    alt: Intervención durante Balcones 3
+  - _block: imagen
+    src: /obras/inconspicuo/cover2025.webp
     alt: Intervención durante Balcones 3
 bento: small
 ---
