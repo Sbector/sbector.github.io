@@ -10,5 +10,8 @@ media_content:
   - _block: imagen
     src: /obras/planet/planet.jpg
     alt: still del video planet
+  - _block: video
+    src: /obras/planet/planet_2020_web_extract.mp4
+    alt: Extracto de Planet, 2020
 bento: wide
 ---
