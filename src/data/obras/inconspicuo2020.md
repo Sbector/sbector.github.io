@@ -7,11 +7,11 @@ status: published
 cover: /obras/inconspicuo/inconspicuo2020.webp
 coverAlt: colage digital de escena apocaliptica
 media_content:
-  - _block: imagen
-    src: /obras/inconspicuo/inconspicuo2020.jpg
-    alt: Intervención inconspicuo en casa Rayón
   - _block: video
     src: /obras/inconspicuo/insconspicuo_2020_web_extract.mp4
+    alt: Intervención inconspicuo en casa Rayón
+  - _block: imagen
+    src: /obras/inconspicuo/inconspicuo2020.jpg
     alt: Intervención inconspicuo en casa Rayón
 bento: tall
 ---
