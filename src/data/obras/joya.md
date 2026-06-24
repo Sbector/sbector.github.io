@@ -7,8 +7,8 @@ status: draft
 cover: /obras/joya/cover.webp
 coverAlt: intervención en LAJM
 media_content:
-  _block: imagen
-  src: /obras/joya/cover.jpg
-  alt: intervención en LAJM
+  - _block: imagen
+    src: /obras/joya/cover.jpg
+    alt: intervención en LAJM
 bento: tall
 ---

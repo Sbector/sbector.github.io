@@ -7,9 +7,9 @@ status: published
 cover: /obras/shuniata/cover.webp
 coverAlt: intervención en CERI
 media_content:
-  _block: imagen
-  src: /obras/shuniata/shuniata.jpg
-  alt: intervención en CERI
+  - _block: imagen
+    src: /obras/shuniata/shuniata.jpg
+    alt: intervención en CERI
 bento: small
 ---
 *Shuniata* es una intervención digital que explora el concepto budista de la vacuidad, no como la nada, sino como un estado de potencialidad. Creada en 2012 para la exposición *Despacio abducción* curada por Rubén Méndez en CUCEA (Guadalajara). Esta obra es accesible a través de una placa con un código QR; al escanearlo, el espectador es dirigido a un sitio web que revela una imagen de una instalación inexistente, una pieza que nunca ocupó un espacio físico.

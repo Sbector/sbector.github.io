@@ -7,8 +7,8 @@ status: draft
 cover: /obras/esteganografia/cover.webp
 coverAlt: imagen recodificada
 media_content:
-  _block: imagen
-  src: /obras/esteganografia/esteganografia.jpg
-  alt: imagen recodificada
+  - _block: imagen
+    src: /obras/esteganografia/esteganografia.jpg
+    alt: imagen recodificada
 bento: wide
 ---

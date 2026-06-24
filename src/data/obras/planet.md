@@ -7,8 +7,8 @@ status: published
 cover: /obras/planet/cover.webp
 coverAlt: still del video planet
 media_content:
-  _block: imagen
-  src: /obras/planet/planet.jpg
-  alt: still del video planet
+  - _block: imagen
+    src: /obras/planet/planet.jpg
+    alt: still del video planet
 bento: wide
 ---

@@ -7,9 +7,9 @@ status: published
 cover: /obras/quietam/cover.webp
 coverAlt: Fotografía digital
 media_content:
-  _block: imagen
-  src: /obras/quietam/cover.jpg
-  alt: Fotografía digital
+  - _block: imagen
+    src: /obras/quietam/cover.jpg
+    alt: Fotografía digital
 bento: tall
 ---
 Siempre me ha fascinado la génesis de la serie original *Stiller Nachmittag* (Tarde tranquila) de Fischli y Weiss : dos artistas que, transformando el aburrimiento de una espera en una oportunidad, crearon esculturas efímeras con objetos cotidianos de su estudio, documentándolas a través de la fotografía. Esa habilidad para hallar lo extraordinario en lo mundano y capturar la esencia de un instante fugaz resonó hondamente en mí.

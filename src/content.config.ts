@@ -41,7 +41,7 @@ const mediaBlockSchema = z.discriminatedUnion("_block", [
 ]);
 
 const mediaContentSchema = z
-  .union([mediaBlockSchema, z.array(mediaBlockSchema)])
+  .array(mediaBlockSchema)
   .optional();
 
 const obras = defineCollection({

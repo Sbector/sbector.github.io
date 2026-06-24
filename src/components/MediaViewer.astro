@@ -15,10 +15,8 @@ type MediaBlock =
       lods?: Array<{ nivel: string; file: string }> | undefined;
     };
 
-type MediaContent = MediaBlock | MediaBlock[] | undefined;
-
 interface Props {
-  mediaContent?: MediaContent;
+  mediaContent?: MediaBlock[] | undefined;
   slug: string;
 }
 
@@ -42,11 +40,7 @@ function assembleLodArray(
   return [...sorted.map((l) => l.file), main_model];
 }
 
-const mediaItems = (Array.isArray(mediaContent)
-  ? mediaContent
-  : mediaContent
-    ? [mediaContent]
-    : []) as MediaBlock[];
+const mediaItems = mediaContent ?? [];
 
 const hasMultiple = mediaItems.length > 1;
 const controlButtonClass =

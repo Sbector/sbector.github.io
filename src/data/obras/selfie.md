@@ -7,8 +7,8 @@ status: archived
 cover: "/obras/selfie/cover.webp"
 coverAlt: "Captura de pantalla de la webapp"
 media_content:
-  _block: imagen
-  src: "/obras/selfie/cover.jpg"
-  alt: "Captura de pantalla de la webapp"
+  - _block: imagen
+    src: "/obras/selfie/cover.jpg"
+    alt: "Captura de pantalla de la webapp"
 bento: tall
 ---

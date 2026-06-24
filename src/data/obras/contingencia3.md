@@ -7,8 +7,8 @@ status: published
 cover: /obras/contingencia3/cover.webp
 coverAlt: colage digital de escena apocaliptica
 media_content:
-  _block: imagen
-  src: /obras/contingencia3/contingencia3.jpg
-  alt: colage digital de escena apocaliptica
+  - _block: imagen
+    src: /obras/contingencia3/contingencia3.jpg
+    alt: colage digital de escena apocaliptica
 bento: small
 ---

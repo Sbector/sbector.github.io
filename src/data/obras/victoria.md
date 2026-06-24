@@ -7,8 +7,8 @@ status: draft
 cover: /obras/victoria/cover.webp
 coverAlt: Envases de cerveza
 media_content:
-  _block: imagen
-  src: /obras/victoria/cover.jpg
-  alt: Envases de cerveza
+  - _block: imagen
+    src: /obras/victoria/cover.jpg
+    alt: Envases de cerveza
 bento: tall
 ---

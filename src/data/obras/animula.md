@@ -7,8 +7,8 @@ status: archived
 cover: /obras/animula/cover.webp
 coverAlt: intervención en trama centro
 media_content:
-  _block: imagen
-  src: /obras/animula/cover.webp
-  alt: intervención en trama centro
+  - _block: imagen
+    src: /obras/animula/cover.webp
+    alt: intervención en trama centro
 bento: small
 ---
