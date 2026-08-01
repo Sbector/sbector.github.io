@@ -49,7 +49,7 @@ const controlButtonClass =
 
 <div
   id="media-viewer"
-  class="group relative w-full flex items-center justify-center px-1 overflow-hidden
+  class="group relative w-full flex items-center justify-center px-1 overflow-hidden touch-pan-y
     h-[60dvh] lg:flex-1 lg:h-full
     data-fullscreen:fixed data-fullscreen:inset-0 data-fullscreen:z-100
     data-fullscreen:w-screen data-fullscreen:h-dvh
@@ -102,6 +102,7 @@ const controlButtonClass =
         {mediaItems.map((item, index) => (
           <div
             data-slide={index}
+            data-block={item._block}
             class:list={[
               "absolute inset-0 flex items-center justify-center transition-opacity duration-300",
               index === 0 ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
@@ -255,6 +256,43 @@ const controlButtonClass =
     }
 
     document.addEventListener("keydown", handleKeydown);
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isSwiping = false;
+    let swipeLocked = false;
+    const SWIPE_THRESHOLD = 50;
+
+    function activeSlideIs3D() {
+      return slides[currentIndex]?.dataset.block === "modelo_3d";
+    }
+
+    viewer.addEventListener("touchstart", (e) => {
+      if (slides.length <= 1 || activeSlideIs3D()) return;
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
+      isSwiping = true;
+      swipeLocked = false;
+    }, { passive: true });
+
+    viewer.addEventListener("touchmove", (e) => {
+      if (!isSwiping || activeSlideIs3D()) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      if (!swipeLocked && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
+        swipeLocked = true;
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    viewer.addEventListener("touchend", (e) => {
+      if (!isSwiping) return;
+      isSwiping = false;
+      if (!swipeLocked) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (dx <= -SWIPE_THRESHOLD) setActiveSlide(currentIndex + 1);
+      else if (dx >= SWIPE_THRESHOLD) setActiveSlide(currentIndex - 1);
+    });
 
     setActiveSlide(0);
 

@@ -9,6 +9,7 @@
   --color-heading: oklch(100% 0 0);
   --color-white: oklch(100% 0 0);
   --spacing-nav: 2.5rem;
+  --text-small: 0.75rem;
 }
 
 /* Light theme overrides */
