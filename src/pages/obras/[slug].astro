@@ -99,12 +99,9 @@ const { Content } = await render(obra);
         window.addEventListener('scroll', updateVisibility, { passive: true });
         updateVisibility();
 
-        document.addEventListener('astro:before-preparation', () => {
-          window.removeEventListener('scroll', updateVisibility);
-        }, { once: true });
       }
 
-      document.addEventListener('astro:page-load', setupScrollIndicator);
+      setupScrollIndicator();
     </script>
   )}
 </Layout>

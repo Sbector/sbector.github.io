@@ -273,9 +273,8 @@ const links = [
       if (e.key === 'Escape' && menuOpen) closeMenu();
     });
 
-    // Close menu on page load (SPA navigation)
     closeMenu();
   }
 
-  document.addEventListener('astro:page-load', initNav);
+  initNav();
 </script>

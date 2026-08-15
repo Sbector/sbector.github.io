@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@view-transition {
+  navigation: auto;
+}
+
 @theme {
   --color-bg: oklch(9.8% 0 0);
   --color-border: oklch(21% 0 0);

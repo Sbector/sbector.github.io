@@ -1,6 +1,5 @@
 ---
 import "@/styles/global.css";
-import { ClientRouter } from "astro:transitions";
 import Nav from "@/components/Nav.astro";
 
 interface Props {
@@ -19,7 +18,6 @@ const { title, back } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<ClientRouter />
 		<script>
 			// Initialize theme as early as possible to prevent FOUC
 			// Default to 'dark' if no preference is stored
@@ -28,8 +26,6 @@ const { title, back } = Astro.props;
 				document.documentElement.setAttribute('data-theme', theme);
 			}
 			applyTheme();
-			// Reapply theme after SPA navigation (ClientRouter)
-			document.addEventListener('astro:after-swap', applyTheme);
 		</script>
 	</head>
 

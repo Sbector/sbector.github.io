@@ -165,10 +165,7 @@ const controlButtonClass =
 </div>
 
 <script>
-  let previousCleanup: (() => void) | null = null;
-
   function setupMediaViewer() {
-    previousCleanup?.();
 
     const viewer = document.getElementById("media-viewer");
     if (!viewer) return;
@@ -300,27 +297,7 @@ const controlButtonClass =
     });
 
     setActiveSlide(0);
-
-    const activeVideo = viewer.querySelector<HTMLVideoElement>('[data-slide="0"] video');
-    if (activeVideo) {
-      const src = activeVideo.getAttribute("src");
-      if (src && activeVideo.readyState === 0) {
-        activeVideo.src = src;
-        activeVideo.load();
-      }
-      activeVideo.play().catch(() => {});
-    }
-
-    const cleanup = () => {
-      exitFullscreen();
-      document.removeEventListener("keydown", handleKeydown);
-    };
-    previousCleanup = cleanup;
-
-    document.addEventListener("astro:before-preparation", cleanup, { once: true });
   }
 
   setupMediaViewer();
-  document.addEventListener("astro:page-load", setupMediaViewer);
-  document.addEventListener("astro:after-swap", setupMediaViewer);
 </script>
