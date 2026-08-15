@@ -309,6 +309,7 @@ const controlButtonClass =
     document.addEventListener("astro:before-preparation", cleanup, { once: true });
   }
 
+  requestAnimationFrame(() => setupMediaViewer());
   document.addEventListener("astro:page-load", setupMediaViewer);
   document.addEventListener("astro:after-swap", setupMediaViewer);
 </script>
