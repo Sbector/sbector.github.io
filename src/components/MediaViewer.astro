@@ -132,6 +132,7 @@ const controlButtonClass =
                 muted
                 loop
                 playsinline
+                preload="auto"
                 class="max-h-[60dvh] lg:max-h-full w-auto object-contain
                   group-data-fullscreen:max-h-dvh group-data-fullscreen:lg:max-h-dvh"
               />
@@ -300,6 +301,16 @@ const controlButtonClass =
 
     setActiveSlide(0);
 
+    const activeVideo = viewer.querySelector<HTMLVideoElement>('[data-slide="0"] video');
+    if (activeVideo) {
+      const src = activeVideo.getAttribute("src");
+      if (src && activeVideo.readyState === 0) {
+        activeVideo.src = src;
+        activeVideo.load();
+      }
+      activeVideo.play().catch(() => {});
+    }
+
     const cleanup = () => {
       exitFullscreen();
       document.removeEventListener("keydown", handleKeydown);
@@ -309,7 +320,7 @@ const controlButtonClass =
     document.addEventListener("astro:before-preparation", cleanup, { once: true });
   }
 
-  requestAnimationFrame(() => setupMediaViewer());
+  setupMediaViewer();
   document.addEventListener("astro:page-load", setupMediaViewer);
   document.addEventListener("astro:after-swap", setupMediaViewer);
 </script>
