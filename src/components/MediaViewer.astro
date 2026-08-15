@@ -164,7 +164,11 @@ const controlButtonClass =
 </div>
 
 <script>
+  let previousCleanup: (() => void) | null = null;
+
   function setupMediaViewer() {
+    previousCleanup?.();
+
     const viewer = document.getElementById("media-viewer");
     if (!viewer) return;
 
@@ -300,9 +304,11 @@ const controlButtonClass =
       exitFullscreen();
       document.removeEventListener("keydown", handleKeydown);
     };
+    previousCleanup = cleanup;
 
     document.addEventListener("astro:before-preparation", cleanup, { once: true });
   }
 
   document.addEventListener("astro:page-load", setupMediaViewer);
+  document.addEventListener("astro:after-swap", setupMediaViewer);
 </script>
